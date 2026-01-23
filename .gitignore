@@ -1,0 +1,19 @@
+# Node modules
+node_modules/
+
+# Python
+__pycache__/
+*.py[cod]
+venv/
+simulation/simulation_results.json
+simulation/spectral_curve.png
+
+# System
+.DS_Store
+Thumbs.db
+
+# VS Code
+.vscode/
+
+# Project Specific
+.env

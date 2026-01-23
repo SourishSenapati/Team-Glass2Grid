@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Glass2Grid | The Future of Waste & Energy</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="ambient-glow"></div>
+
+    <div class="container">
+      <header>
+        <div class="logo">Glass2Grid</div>
+        <nav class="nav-links">
+          <a href="#vision">Vision</a>
+          <a href="#tech">Technology</a>
+          <a href="#impact">Hult Prize Impact</a>
+          <a href="#contact">Partner</a>
+        </nav>
+      </header>
+
+      <section class="hero">
+        <h1>Turning Crop Waste into<br />Clean Energy.</h1>
+        <p>
+          We convert rice husk & bagasse into tinted "Power Glass"—smart windows
+          that harvest sunlight, ending stubble burning and powering smart
+          cities.
+        </p>
+        <button
+          class="cta-button"
+          onclick="
+            document
+              .getElementById('sim')
+              .scrollIntoView({ behavior: 'smooth' })
+          "
+        >
+          Run Simulation
+        </button>
+      </section>
+
+      <section id="sim" class="simulation-section">
+        <div class="glass-panel">
+          <div class="controls">
+            <h2>Live Impact Simulator</h2>
+            <p style="margin-bottom: 2rem; color: #888">
+              Configure a Glass2Grid installation for a standard office building.
+            </p>
+
+            <div class="slider-group">
+              <label
+                >Window Surface Area
+                <span id="areaVal" class="value-display">10 m²</span></label
+              >
+              <input
+                type="range"
+                id="areaRange"
+                min="10"
+                max="1000"
+                value="100"
+                step="10"
+              />
+            </div>
+
+            <div class="slider-group">
+              <label
+                >Avg. Peak Sun Hours
+                <span id="hoursVal" class="value-display">5 hrs</span></label
+              >
+              <input
+                type="range"
+                id="hoursRange"
+                min="2"
+                max="10"
+                value="5"
+                step="0.5"
+              />
+            </div>
+
+            <div class="visualizer">
+              <div class="window-frame">
+                <div class="sun-rays"></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="results">
+            <h2>Projected Output</h2>
+            <div class="results-display">
+              <div class="metric-card">
+                <div class="label">Power Capacity</div>
+                <div class="value"><span id="powerOut">0</span> kW</div>
+              </div>
+              <div class="metric-card">
+                <div class="label">Annual Energy</div>
+                <div class="value"><span id="energyOut">0</span> MWh</div>
+              </div>
+            </div>
+
+            <h3 style="margin: 2rem 0 1rem; color: var(--primary)">
+              Social & Eco Impact
+            </h3>
+
+            <div class="results-display">
+              <div class="metric-card secondary">
+                <div class="label">Waste Diverted</div>
+                <div class="value"><span id="wasteUtil">0</span> t</div>
+              </div>
+              <div class="metric-card secondary">
+                <div class="label">Farmer Income</div>
+                <div class="value"><span id="farmerInc">0</span></div>
+              </div>
+              <div class="metric-card secondary">
+                <div class="label">CO₂ Mitigated</div>
+                <div class="value"><span id="co2Saved">0</span> t</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="tech" class="pitch-grid">
+        <div class="pitch-card">
+          <h3>🧪 The Material</h3>
+          <p>
+            We synthesize carbon dots from <strong>Rice Husk</strong> and
+            <strong>Bagasse</strong>. These quantum-sized particles absorb UV
+            light and emit usable red light.
+          </p>
+        </div>
+        <div class="pitch-card">
+          <h3>⚡ The Glass</h3>
+          <p>
+            The emitted light is trapped by total internal reflection and guided
+            to edge-mounted PV strips, generating invisible power.
+          </p>
+        </div>
+        <div class="pitch-card">
+          <h3>🌍 The Cycle</h3>
+          <p>
+            By purchasing waste, we stop open burning. By selling glass, we
+            lower building energy use. A true circular loop verified by simple QR codes.
+          </p>
+        </div>
+      </section>
+
+      <footer>
+        <p>Designed for Hult Prize 2026 | Glass2Grid Team</p>
+      </footer>
+    </div>
+
+    <script src="simulation.js"></script>
+  </body>
+</html>

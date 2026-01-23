@@ -1,0 +1,13 @@
+# Repository Description Options
+
+## Option 1 (Recommended - Balanced)
+Converting agricultural waste into energy-generating smart glass. Hult Prize 2026 Contender.
+
+## Option 2 (Technical)
+Luminescent Solar Concentrator (LSC) technology derived from rice husk waste for building-integrated photovoltaics.
+
+## Option 3 (Impact Focused)
+Glass2Grid: Ending crop burning by turning waste into renewable energy infrastructure for smart cities.
+
+## Option 4 (Short)
+From Crop Residue to Smart Cities: The Glass2Grid Initiative.
