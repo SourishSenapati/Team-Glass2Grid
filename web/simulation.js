@@ -1,10 +1,8 @@
-// ============================================================================
-// GLASS2GRID: HIGH-FIDELITY BROWSER SIMULATION KERNEL
-// ============================================================================
-// Physics Engine: Stokes-Shift Ray Tracing Approximation
-// Precision: Float64
-// Version: 2.0.0-Alpha (Hult Prize Edition)
-// ============================================================================
+/**
+ * Glass2Grid Optical Physics Engine
+ * Implements Ray Tracing approximations for Stokes-Shift based LSCs.
+ * @author Sourish Senapati
+ */
 
 class PhysicsEngine {
     constructor() {
