@@ -1,6 +1,3 @@
 {
-  "buildCommand": "cd glass-viz-app && npm install && npm run build",
-  "outputDirectory": "glass-viz-app/dist",
-  "framework": "vite",
-  "installCommand": "cd glass-viz-app && npm install"
+  "version": 2
 }
