@@ -63,26 +63,25 @@ const PreOrderModal = ({ isOpen, onClose, tier }) => {
         onClose();
     };
 
-    if (!isOpen) return null;
-
     return (
         <AnimatePresence>
-            <div className="fixed inset-0 z-[60] flex items-center justify-center p-4">
-                <motion.div 
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    exit={{ opacity: 0 }}
-                    onClick={onClose}
-                    className="absolute inset-0 bg-black/90 backdrop-blur-md"
-                />
-                
-                <motion.div 
-                    initial={{ scale: 0.9, opacity: 0, y: 20 }}
-                    animate={{ scale: 1, opacity: 1, y: 0 }}
-                    exit={{ scale: 0.9, opacity: 0, y: 20 }}
-                    onClick={(e) => e.stopPropagation()}
-                    className="relative z-10 w-full max-w-4xl max-h-[90vh] overflow-y-auto bg-[#0a0a0f] border border-[#00ffcc]/30 rounded-2xl shadow-[0_0_50px_rgba(0,255,204,0.2)]"
-                >
+            {isOpen && (
+                <div className="fixed inset-0 z-[60] flex items-center justify-center p-4">
+                    <motion.div 
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                        onClick={onClose}
+                        className="absolute inset-0 bg-black/90 backdrop-blur-md"
+                    />
+                    
+                    <motion.div 
+                        initial={{ scale: 0.9, opacity: 0, y: 20 }}
+                        animate={{ scale: 1, opacity: 1, y: 0 }}
+                        exit={{ scale: 0.9, opacity: 0, y: 20 }}
+                        onClick={(e) => e.stopPropagation()}
+                        className="relative z-10 w-full max-w-4xl max-h-[90vh] overflow-y-auto bg-[#0a0a0f] border border-[#00ffcc]/30 rounded-2xl shadow-[0_0_50px_rgba(0,255,204,0.2)]"
+                    >
                     <button 
                         onClick={onClose}
                         className="sticky top-4 right-4 float-right text-gray-400 hover:text-white transition-colors bg-black/50 p-2 rounded-full backdrop-blur-sm z-20"
@@ -449,6 +448,7 @@ const PreOrderModal = ({ isOpen, onClose, tier }) => {
                     )}
                 </motion.div>
             </div>
+            )}
         </AnimatePresence>
     );
 };
