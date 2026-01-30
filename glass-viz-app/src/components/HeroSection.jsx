@@ -4,7 +4,7 @@ import { Sun, Wind, Leaf } from 'lucide-react';
 
 const HeroSection = ({ onContactClick }) => {
   return (
-    <div className="relative min-h-[80vh] flex flex-col justify-center items-center text-center overflow-hidden">
+    <div className="relative min-h-screen flex flex-col justify-center items-center text-center overflow-hidden py-24 gap-12">
       {/* Background Gradient/Glow */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-[#00ffcc] opacity-10 blur-[120px] rounded-full pointer-events-none" />
 
@@ -44,7 +44,7 @@ const HeroSection = ({ onContactClick }) => {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1, y: [0, 10, 0] }}
         transition={{ duration: 2, repeat: Infinity }}
-        className="absolute bottom-10 left-1/2 -translate-x-1/2 text-white/50"
+        className="hidden md:block absolute bottom-10 left-1/2 -translate-x-1/2 text-white/50"
       >
         <div className="flex flex-col items-center gap-2">
             <span className="text-[10px] uppercase tracking-widest">System Architecture</span>
@@ -57,7 +57,7 @@ const HeroSection = ({ onContactClick }) => {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 0.5, duration: 1 }}
-        className="relative mt-16 md:absolute md:bottom-10 w-full max-w-5xl px-4 grid grid-cols-1 md:grid-cols-3 gap-6"
+        className="relative w-full max-w-5xl px-4 grid grid-cols-1 md:grid-cols-3 gap-6"
       >
         <StatCard icon={Leaf} title="Feedstock Optimization" value="100% Upcycled Biomass" color="text-green-400" />
         <StatCard icon={Sun} title="Optical Transmittance" value="~80% VLT" color="text-yellow-400" />
