@@ -1,15 +1,6 @@
 {
-  "version": 2,
-  "builds": [
-    {
-      "src": "web/index.html",
-      "use": "@vercel/static"
-    }
-  ],
-  "routes": [
-    {
-      "src": "/(.*)",
-      "dest": "/web/$1"
-    }
-  ]
+  "buildCommand": "cd glass-viz-app && npm install && npm run build",
+  "outputDirectory": "glass-viz-app/dist",
+  "framework": "vite",
+  "installCommand": "cd glass-viz-app && npm install"
 }
