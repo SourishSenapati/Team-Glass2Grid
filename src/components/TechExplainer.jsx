@@ -134,13 +134,8 @@ const TechExplainer = () => {
         }
     ];
 
-    const [expanded, setExpanded] = useState({});
     const [activeDetail, setActiveDetail] = useState(null);
     const [activeStep, setActiveStep] = useState(null);
-
-    const toggleExpand = (index) => {
-        setExpanded(prev => ({ ...prev, [index]: !prev[index] }));
-    };
 
     return (
         <div className="py-24 relative overflow-hidden">
@@ -302,31 +297,20 @@ const TechExplainer = () => {
                                 </div>
                                 
                                 
-                                {/* Description with Expand/Collapse */}
+                                {/* Description with Read More Popup */}
                                 <div className="relative mb-6">
-                                    <p className={`text-gray-300 leading-relaxed text-sm md:text-base font-light ${!expanded[index] ? 'line-clamp-3' : ''}`}>
+                                    <p className="text-gray-300 leading-relaxed text-sm md:text-base font-light line-clamp-3">
                                         {step.desc}
                                     </p>
-                                    <div className="flex gap-3 mt-2">
-                                        <button 
-                                            onClick={(e) => {
-                                                e.stopPropagation();
-                                                toggleExpand(index);
-                                            }}
-                                            className={`text-xs font-bold uppercase tracking-wider hover:text-white transition-colors ${step.color.replace('text-', 'text-')}`}
-                                        >
-                                            {expanded[index] ? 'READ LESS' : 'READ MORE'}
-                                        </button>
-                                        <button 
-                                            onClick={(e) => {
-                                                e.stopPropagation();
-                                                setActiveStep(step);
-                                            }}
-                                            className={`text-xs font-bold uppercase tracking-wider hover:text-white transition-colors flex items-center gap-1 ${step.color.replace('text-', 'text-')}`}
-                                        >
-                                            Full Details <ArrowRight size={14} />
-                                        </button>
-                                    </div>
+                                    <button 
+                                        onClick={(e) => {
+                                            e.stopPropagation();
+                                            setActiveStep(step);
+                                        }}
+                                        className={`text-xs font-bold uppercase tracking-wider mt-2 hover:text-white transition-colors ${step.color.replace('text-', 'text-')}`}
+                                    >
+                                        READ MORE
+                                    </button>
                                 </div>
 
                                 <div className={`flex flex-wrap gap-2 ${index % 2 === 0 ? "md:justify-end" : "justify-start"}`}>
