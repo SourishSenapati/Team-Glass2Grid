@@ -307,7 +307,10 @@ const TechExplainer = () => {
                                         {step.desc}
                                     </p>
                                     <button 
-                                        onClick={() => setActiveStep(step)}
+                                        onClick={(e) => {
+                                            e.stopPropagation();
+                                            setActiveStep(step);
+                                        }}
                                         className={`text-xs font-bold uppercase tracking-wider mt-2 hover:text-white transition-colors flex items-center gap-1 ${step.color.replace('text-', 'text-')}`}
                                     >
                                         Read More <ArrowRight size={14} />
@@ -319,7 +322,10 @@ const TechExplainer = () => {
                                         <motion.button
                                             key={i}
                                             layoutId={`detail-${detail.label}`}
-                                            onClick={() => setActiveDetail(detail)}
+                                            onClick={(e) => {
+                                                e.stopPropagation();
+                                                setActiveDetail(detail);
+                                            }}
                                             className="px-2 py-1 bg-white/5 border border-white/10 rounded-full text-[10px] md:text-xs font-bold text-gray-400 hover:text-white hover:border-[#00ffcc] hover:bg-[#00ffcc]/10 transition-all cursor-pointer text-left"
                                         >
                                             {detail.label}
