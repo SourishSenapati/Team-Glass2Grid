@@ -104,18 +104,18 @@ const ImpactCalculator = ({ currency, setCurrency, exchangeRate }) => {
         
         {/* Controls */}
         <div className="space-y-8 relative z-20">
-          <div className="flex justify-between items-center bg-white/5 p-2 rounded-lg border border-white/10">
+          <div className="flex justify-between items-center bg-white/5 p-2.5 rounded-lg border border-white/10">
             <span className="text-xs font-bold text-gray-400 uppercase tracking-widest pl-2">Currency</span>
-            <div className="flex gap-1">
+            <div className="flex gap-2 bg-black/60 p-1.5 rounded-lg border border-white/10">
                 <button
                     onClick={() => setCurrency('USD')}
-                    className={`px-3 py-1 text-xs font-bold rounded transition-all ${currency === 'USD' ? 'bg-[#00ffcc] text-black' : 'text-gray-500 hover:text-white'}`}
+                    className={`px-4 py-2 text-xs md:text-sm font-bold rounded-md transition-all ${currency === 'USD' ? 'bg-[#00ffcc] text-black shadow-lg shadow-[#00ffcc]/30' : 'text-gray-300 hover:text-white hover:bg-white/10'}`}
                 >
                     USD ($)
                 </button>
                 <button
                     onClick={() => setCurrency('INR')}
-                    className={`px-3 py-1 text-xs font-bold rounded transition-all ${currency === 'INR' ? 'bg-[#00ffcc] text-black' : 'text-gray-500 hover:text-white'}`}
+                    className={`px-4 py-2 text-xs md:text-sm font-bold rounded-md transition-all ${currency === 'INR' ? 'bg-[#00ffcc] text-black shadow-lg shadow-[#00ffcc]/30' : 'text-gray-300 hover:text-white hover:bg-white/10'}`}
                 >
                     INR (₹)
                 </button>
@@ -130,7 +130,7 @@ const ImpactCalculator = ({ currency, setCurrency, exchangeRate }) => {
                     <button
                         key={type}
                         onClick={() => setInputs(prev => ({...prev, buildingType: type, glassArea: type === 'skyscraper' ? 15000 : type === 'airport' ? 30000 : 5000}))}
-                        className={`py-3 px-2 text-xs font-bold uppercase tracking-wider rounded border transition-all ${inputs.buildingType === type ? 'bg-[#00ffcc] text-black border-[#00ffcc]' : 'bg-black/40 text-gray-400 border-white/10 hover:border-white/30'}`}
+                        className={`py-3 px-2 text-xs md:text-sm font-bold uppercase tracking-wider rounded-lg border transition-all ${inputs.buildingType === type ? 'bg-[#00ffcc] text-black border-[#00ffcc] shadow-lg shadow-[#00ffcc]/30' : 'bg-black/60 text-gray-300 border-white/20 hover:border-[#00ffcc]/50 hover:text-white hover:bg-black/80'}`}
                     >
                         {type}
                     </button>

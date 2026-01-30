@@ -170,18 +170,18 @@ const ComparisonChart = ({ currency = 'USD', exchangeRate = 1 }) => {
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 md:gap-12 items-start animate-fade-in"> 
             <div className="lg:col-span-1 space-y-6">
                 {/* Mobile-First Controls */}
-                <div className="flex flex-col gap-4 p-4 rounded-xl bg-white/5 border border-white/10">
-                    <div className="flex justify-between items-center">
-                        <h3 className="text-lg font-bold text-gray-200">Financial Model</h3>
-                        <div className="flex bg-black/40 rounded-lg p-1 gap-1">
+                <div className="flex flex-col gap-4 p-4 md:p-6 rounded-xl bg-white/5 border border-white/10">
+                    <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+                        <h3 className="text-base md:text-lg font-bold text-white">Financial Model</h3>
+                        <div className="flex bg-black/60 rounded-lg p-1.5 gap-1.5 border border-white/10 w-full sm:w-auto">
                             {['conservative', 'base', 'aggressive'].map(s => (
                                 <button 
                                     key={s}
                                     onClick={() => setScenario(s)} 
-                                    className={`px-3 py-1.5 text-[10px] md:text-xs font-medium uppercase tracking-wider rounded transition-all ${
+                                    className={`px-3 md:px-4 py-2 md:py-2.5 text-xs md:text-sm font-bold uppercase tracking-wider rounded-md transition-all flex-1 sm:flex-initial whitespace-nowrap ${
                                         scenario === s 
-                                        ? (s === 'conservative' ? 'bg-red-500/20 text-red-400' : s === 'aggressive' ? 'bg-green-500/20 text-green-400' : 'bg-[#00ffcc]/20 text-[#00ffcc]') 
-                                        : 'text-gray-500 hover:text-white'
+                                        ? (s === 'conservative' ? 'bg-red-500 text-white shadow-lg shadow-red-500/30' : s === 'aggressive' ? 'bg-green-500 text-white shadow-lg shadow-green-500/30' : 'bg-[#00ffcc] text-black shadow-lg shadow-[#00ffcc]/30') 
+                                        : 'text-gray-400 hover:text-white hover:bg-white/5'
                                     }`}
                                 >
                                     {s}
@@ -192,27 +192,27 @@ const ComparisonChart = ({ currency = 'USD', exchangeRate = 1 }) => {
 
                     <div className="space-y-3 font-mono text-sm border-t border-white/5 pt-4">
                         <div className="flex justify-between items-center">
-                            <span className="text-gray-500">Break-Even</span>
-                            <span className={`${crossoverYear < 7 ? 'text-[#00ffcc]' : 'text-yellow-400'} font-bold`}>
+                            <span className="text-gray-400 font-medium">Break-Even</span>
+                            <span className={`${crossoverYear < 7 ? 'text-[#00ffcc]' : 'text-yellow-400'} font-bold text-base`}>
                                 {crossoverYear > -1 ? `Year ${crossoverYear}` : '> 25 Years'}
                             </span>
                         </div>
                         <div className="flex justify-between items-center">
-                            <span className="text-gray-500">Net Present Value</span>
-                            <span className={`font-bold ${npv > 0 ? 'text-[#00ffcc]' : 'text-red-500'}`}>
+                            <span className="text-gray-400 font-medium">Net Present Value</span>
+                            <span className={`font-bold text-base ${npv > 0 ? 'text-[#00ffcc]' : 'text-red-500'}`}>
                                 {npv > 0 ? '+' : ''}{currency === 'USD' ? '$' : '₹'}{(npv / (currency === 'USD' ? 1000000 : 10000000)).toFixed(2)}{currency === 'USD' ? 'M' : 'Cr'}
                             </span>
                         </div>
                         <div className="flex justify-between items-center">
-                            <span className="text-gray-500">25y ROI</span>
-                            <span className={`font-bold ${parseFloat(roi) > 15 ? 'text-[#00ffcc]' : 'text-yellow-400'}`}>
+                            <span className="text-gray-400 font-medium">25y ROI</span>
+                            <span className={`font-bold text-base ${parseFloat(roi) > 15 ? 'text-[#00ffcc]' : 'text-yellow-400'}`}>
                                 {roi}%
                             </span>
                         </div>
                         {/* New Hype Metric */}
-                        <div className="flex justify-between items-center border-t border-white/5 pt-2 mt-2">
-                             <span className="text-purple-400 text-xs font-bold uppercase tracking-wider">Market Alpha</span>
-                             <span className="font-bold text-white">{(parseFloat(roi) / 8.5).toFixed(1)}x S&P</span>
+                        <div className="flex justify-between items-center border-t border-white/5 pt-3 mt-3">
+                             <span className="text-purple-400 text-xs md:text-sm font-bold uppercase tracking-wider">Market Alpha</span>
+                             <span className="font-bold text-white text-base">{(parseFloat(roi) / 8.5).toFixed(1)}x S&P</span>
                         </div>
                     </div>
 
