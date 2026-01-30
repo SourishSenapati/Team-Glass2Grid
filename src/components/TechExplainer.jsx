@@ -136,6 +136,7 @@ const TechExplainer = () => {
 
     const [expanded, setExpanded] = useState({});
     const [activeDetail, setActiveDetail] = useState(null);
+    const [activeStep, setActiveStep] = useState(null);
 
     const toggleExpand = (index) => {
         setExpanded(prev => ({ ...prev, [index]: !prev[index] }));
@@ -181,6 +182,60 @@ const TechExplainer = () => {
                             <p className="text-gray-300 leading-relaxed text-base md:text-lg">
                                 {activeDetail.desc}
                             </p>
+                        </motion.div>
+                    </div>
+                )}
+
+                {/* Step Description Modal */}
+                {activeStep && (
+                    <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
+                        <motion.div 
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            exit={{ opacity: 0 }}
+                            onClick={() => setActiveStep(null)}
+                            className="absolute inset-0 bg-black/80 backdrop-blur-sm"
+                        />
+                        <motion.div 
+                            className="bg-[#0a0a0f] border border-[#00ffcc]/30 rounded-2xl p-6 md:p-8 max-w-4xl w-full relative z-10 shadow-[0_0_50px_rgba(0,255,204,0.1)] overflow-y-auto max-h-[90vh]"
+                            initial={{ scale: 0.9, y: 50, opacity: 0 }}
+                            animate={{ scale: 1, y: 0, opacity: 1 }}
+                            exit={{ scale: 0.9, y: 50, opacity: 0 }}
+                        >
+                            <button 
+                                onClick={() => setActiveStep(null)}
+                                className="absolute top-4 right-4 text-gray-400 hover:text-white transition-colors z-20 bg-[#0a0a0f]/50 p-2 rounded-full backdrop-blur-sm hover:bg-[#00ffcc]/10"
+                            >
+                                <X size={24} />
+                            </button>
+                            
+                            <div className={`flex items-center gap-4 mb-6 pb-4 border-b border-white/10`}>
+                                <div className={`p-4 rounded-xl bg-white/5 ${activeStep.color} shadow-lg backdrop-blur-sm shrink-0`}>
+                                    <activeStep.icon size={36} strokeWidth={1.5} />
+                                </div>
+                                <div>
+                                    <div className={`${activeStep.color} text-xs font-bold uppercase tracking-widest mb-1`}>{activeStep.subtitle}</div>
+                                    <h3 className="text-2xl md:text-3xl font-bold text-white">{activeStep.title}</h3>
+                                </div>
+                            </div>
+                            
+                            <p className="text-gray-300 leading-relaxed text-base md:text-lg mb-8">
+                                {activeStep.desc}
+                            </p>
+
+                            <div className="space-y-4">
+                                <h4 className="text-[#00ffcc] text-sm font-bold uppercase tracking-widest mb-4">Technical Details</h4>
+                                {activeStep.techDetails.map((detail, i) => (
+                                    <div key={i} className="p-4 bg-white/5 rounded-xl border border-white/10 hover:border-[#00ffcc]/30 transition-colors">
+                                        <div className="flex items-start justify-between mb-2">
+                                            <span className="text-xs font-bold text-gray-400 uppercase tracking-wider">{detail.label}</span>
+                                            <span className={`text-xs font-mono ${activeStep.color} px-2 py-0.5 bg-white/5 rounded`}>{i + 1}/{activeStep.techDetails.length}</span>
+                                        </div>
+                                        <h5 className="text-lg font-bold text-white mb-2">{detail.title}</h5>
+                                        <p className="text-gray-300 leading-relaxed text-sm">{detail.desc}</p>
+                                    </div>
+                                ))}
+                            </div>
                         </motion.div>
                     </div>
                 )}
@@ -246,14 +301,14 @@ const TechExplainer = () => {
                                 
                                 {/* Description with Read More */}
                                 <div className="relative mb-6">
-                                    <p className={`text-gray-300 leading-relaxed text-sm md:text-base font-light transition-all ${expanded[index] ? '' : 'line-clamp-3'}`}>
+                                    <p className="text-gray-300 leading-relaxed text-sm md:text-base font-light line-clamp-3">
                                         {step.desc}
                                     </p>
                                     <button 
-                                        onClick={() => toggleExpand(index)}
-                                        className={`text-xs font-bold uppercase tracking-wider mt-2 hover:text-white transition-colors ${step.color.replace('text-', 'text-')}`}
+                                        onClick={() => setActiveStep(step)}
+                                        className={`text-xs font-bold uppercase tracking-wider mt-2 hover:text-white transition-colors flex items-center gap-1 ${step.color.replace('text-', 'text-')}`}
                                     >
-                                        {expanded[index] ? 'Read Less' : 'Read More'}
+                                        Read More <ArrowRight size={14} />
                                     </button>
                                 </div>
 
