@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ArrowRight, Recycle, Sun, BatteryCharging, Zap, X, atom } from 'lucide-react';
+import { ArrowRight, Recycle, Sun, BatteryCharging, Zap, X } from 'lucide-react';
 
 const TechExplainer = () => {
     const steps = [

@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 import { Leaf, Truck, Factory, Recycle, Activity, Play, CheckCircle } from 'lucide-react';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, AreaChart, Area } from 'recharts';
 
-const LCAAModel = () => {
+const LCAAModel = ({ currency = 'USD', exchangeRate = 1 }) => {
     const [isTraining, setIsTraining] = useState(false);
     const [progress, setProgress] = useState(0);
     const [optimizationData, setOptimizationData] = useState([]);
