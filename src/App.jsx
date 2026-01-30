@@ -33,10 +33,13 @@ function App() {
     <div className="min-h-screen relative">
       <ParticleBackground />
       <nav className="fixed top-0 left-0 right-0 z-50 px-4 md:px-6 py-4 glass-panel m-2 md:m-4 flex justify-between items-center max-w-7xl mx-auto backdrop-blur-md bg-black/20">
-        <div className="text-2xl font-bold tracking-tighter">
+        <button 
+          onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+          className="text-2xl font-bold tracking-tighter hover:opacity-80 transition-opacity cursor-pointer"
+        >
           <span className="text-white">LUMI</span>
           <span className="text-[#00ffcc]">CORE</span>
-        </div>
+        </button>
         <div className="hidden md:flex gap-6 text-sm font-medium text-gray-300">
           <a href="#technology" className="hover:text-[#00ffcc] transition-colors">Technology</a>
           <a href="#materials" className="hover:text-[#00ffcc] transition-colors">Engineering</a>

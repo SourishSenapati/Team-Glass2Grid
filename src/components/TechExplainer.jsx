@@ -164,6 +164,7 @@ const TechExplainer = () => {
                             initial={{ scale: 0.9, opacity: 0 }}
                             animate={{ scale: 1, opacity: 1 }}
                             exit={{ scale: 0.9, opacity: 0 }}
+                            onClick={(e) => e.stopPropagation()}
                         >
                             <button 
                                 onClick={() => setActiveDetail(null)}
@@ -201,6 +202,7 @@ const TechExplainer = () => {
                             initial={{ scale: 0.9, y: 50, opacity: 0 }}
                             animate={{ scale: 1, y: 0, opacity: 1 }}
                             exit={{ scale: 0.9, y: 50, opacity: 0 }}
+                            onClick={(e) => e.stopPropagation()}
                         >
                             <button 
                                 onClick={() => setActiveStep(null)}
