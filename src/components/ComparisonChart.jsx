@@ -233,12 +233,12 @@ const ComparisonChart = ({ currency = 'USD', exchangeRate = 1 }) => {
                 </div>
             </div>
             
-            <div className="lg:col-span-2 h-[250px] md:h-[400px] w-full bg-black/20 rounded-xl p-2 md:p-4 border border-white/5 relative">
+            <div className="lg:col-span-2 h-[250px] md:h-[400px] min-h-[250px] w-full bg-black/20 rounded-xl p-2 md:p-4 border border-white/5 relative">
                  <div className="absolute top-2 right-2 md:top-4 md:right-4 z-10 flex gap-4 text-[10px] md:text-xs font-mono text-gray-500">
                     <div className="flex items-center gap-1.5"><div className="w-2 h-2 rounded-full bg-red-500" /> Standard</div>
                     <div className="flex items-center gap-1.5"><div className="w-2 h-2 rounded-full bg-[#00ffcc]" /> Glass2Grid</div>
                  </div>
-                <ResponsiveContainer width="100%" height="100%">
+                <ResponsiveContainer width="100%" height="100%" minHeight={200}>
                     <AreaChart
                         data={data}
                         margin={{ top: 10, right: 10, left: -20, bottom: 0 }}

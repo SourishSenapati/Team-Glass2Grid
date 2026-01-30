@@ -104,35 +104,6 @@ const MaterialSpec = () => {
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             
-            {/* Controls */}
-            <div className="absolute top-4 right-4 z-20 flex flex-col gap-2 pointer-events-none md:pointer-events-auto">
-                <div className="bg-black/60 backdrop-blur-md rounded-lg p-1 flex flex-col gap-2 pointer-events-auto">
-                    <button 
-                        onClick={() => setViewMode('default')}
-                        className={`p-2 rounded-md transition-all ${viewMode === 'default' ? 'bg-[#00ffcc] text-black shadow-[0_0_10px_#00ffcc]' : 'text-gray-400 hover:text-white'}`}
-                        title="Stacked View"
-                    >
-                        <Layers size={20} />
-                    </button>
-                    <button 
-                        onClick={() => setViewMode('exploded')}
-                        className={`p-2 rounded-md transition-all ${viewMode === 'exploded' ? 'bg-[#00ffcc] text-black shadow-[0_0_10px_#00ffcc]' : 'text-gray-400 hover:text-white'}`}
-                        title="Exploded View"
-                    >
-                        <Maximize size={20} />
-                    </button>
-                    <button 
-                        onClick={() => setViewMode('isolated')}
-                        className={`p-2 rounded-md transition-all ${viewMode === 'isolated' ? 'bg-[#00ffcc] text-black shadow-[0_0_10px_#00ffcc]' : 'text-gray-400 hover:text-white'}`}
-                        title="Isolate View"
-                    >
-                        <Eye size={20} />
-                    </button>
-                </div>
-                <div className="mt-2 text-[10px] text-center font-mono text-gray-500 bg-black/40 rounded p-1 backdrop-blur-sm pointer-events-none">
-                    DRAG TO ROTATE
-                </div>
-            </div>
 
             {/* Interactive Exploded View Diagram - REALISTIC STACKING */}
             <div 
@@ -152,6 +123,35 @@ const MaterialSpec = () => {
                 onTouchEnd={handleMouseUp}
                 style={{ touchAction: 'none' }}
             >
+                {/* Controls - Positioned inside container */}
+                <div className="absolute top-4 right-4 z-20 flex flex-col gap-2">
+                    <div className="bg-black/60 backdrop-blur-md rounded-lg p-1 flex flex-col gap-2">
+                        <button 
+                            onClick={() => setViewMode('default')}
+                            className={`p-2 rounded-md transition-all ${viewMode === 'default' ? 'bg-[#00ffcc] text-black shadow-[0_0_10px_#00ffcc]' : 'text-gray-400 hover:text-white'}`}
+                            title="Stacked View"
+                        >
+                            <Layers size={20} />
+                        </button>
+                        <button 
+                            onClick={() => setViewMode('exploded')}
+                            className={`p-2 rounded-md transition-all ${viewMode === 'exploded' ? 'bg-[#00ffcc] text-black shadow-[0_0_10px_#00ffcc]' : 'text-gray-400 hover:text-white'}`}
+                            title="Exploded View"
+                        >
+                            <Maximize size={20} />
+                        </button>
+                        <button 
+                            onClick={() => setViewMode('isolated')}
+                            className={`p-2 rounded-md transition-all ${viewMode === 'isolated' ? 'bg-[#00ffcc] text-black shadow-[0_0_10px_#00ffcc]' : 'text-gray-400 hover:text-white'}`}
+                            title="Isolate View"
+                        >
+                            <Eye size={20} />
+                        </button>
+                    </div>
+                    <div className="mt-2 text-[10px] text-center font-mono text-gray-500 bg-black/40 rounded p-1 backdrop-blur-sm">
+                        DRAG TO ROTATE
+                    </div>
+                </div>
                 {/* Central Axis Line (Only in Exploded Mode) */}
                 <AnimatePresence>
                 {viewMode === 'exploded' && (
