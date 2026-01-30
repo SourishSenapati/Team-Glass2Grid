@@ -1,69 +1,66 @@
-# Glass2Grid: Agricultural-Waste Derived Tinted Power Glass
+# GLASS2GRID // HULT PRIZE 2026
 
-### _Hult Prize 2026 Contender: "Unlimited Impact"_
+_"Waste isn't waste unless you waste it."_
 
-## 🚀 Executive Summary
+We are re-engineering the urban skin. **Glass2Grid** isn't just another solar project—it's a material science breakthrough that turns agricultural burning (a massive smog contributor) into localized energy generation for skyscrapers. We take crop residues like rice husk ash, extract high-grade carbon quantum dots, and embed them into optical-grade window glazings.
 
-**Glass2Grid** transforms a massive environmental crisis—agricultural waste burning—into a sustainable energy solution for smart cities. We convert crop residues (Rice Husk, Bagasse) into **Tinted Power Glass**, a semi-transparent luminescent solar concentrator (LSC) that generates electricity while offsetting HVAC costs.
-
-**Tagline:** _From Crop Residue to Smart Cities._
+The result? Windows that generate power and pay farmers, instead of just sitting there.
 
 ---
 
-## 📂 Project Structure
+## What's in this Repo?
 
+This is our digital headquarters. You'll find the full stack here—from the verifiable physics models proving our efficiency limits to the interactive pitch deck we're using to close investors.
+
+- **`simulation/`** -> The heavy lifting. Python scripts calculating photon transport efficiency and finding the thermodynamic limits of our N-doped precursors. If you want to check our math (Stern-Volmer Quenching, Stokes Shift), start here.
+- **`glass-viz-app/`** -> The face of the operation. This is the React-based investor portal. It runs the real-time impact calculator (Farmer Revenue + Carbon Offset) and the 3D material explorer.
+
+---
+
+## Getting Started
+
+If you're judging this repository or just setting it up for a demo, here is the playbook.
+
+### 1. The "Wow" Factor (Web App)
+
+Don't mess with the CLI if you just want to see the product. This dashboard is what we use for the pitch.
+
+```bash
+cd glass-viz-app
+npm install
+npm run dev
 ```
-HUT PRIZE 2026/
-├── docs/
-│   └── market_analysis.md    # Strategic fit, alternatives, and business model
-├── simulation/
-│   └── lsc_model.py          # Physics-based optical simulation (Python)
-├── web/                      # STARTUP PITCH & INTERACTIVE DEMO
-│   ├── index.html            # Landing page & Impact Calculator
-│   ├── styles.css            # Premium "Green-Tech" styling
-│   └── simulation.js         # Browser-side logic for investor demo
-└── README.md                 # This file
+
+> Open the localhost link.
+
+This spins up the full "Lumicore" dashboard. It's connected to live currency APIs, so you can toggle between **USD** and **INR** to see the financial viability in real-time.
+
+### 2. The Science (Python Sim)
+
+For the technical due diligence team who wants to see the raw numbers:
+
+```bash
+cd simulation
+python lumicore_optimizer.py
 ```
 
----
-
-## 🌟 Key Features
-
-1.  **Circular Economy Core:** We pay farmers for waste -> Stop burning -> Create high-tech glass -> Generate clean power.
-2.  **Hybrid Material Tech:** Combines waste-derived Carbon Dots with stabilizing agents for commercial viability.
-3.  **Smart City Ready:** Powers IoT sensors (Air Quality, Temp, Occupancy) without wires or batteries.
+This spits out our optimization curves (Quantum Yield vs. Concentration). It's based on lab-verified parameters, so these aren't just random numbers—it's a simulation of the actual material physics.
 
 ---
 
-## 💻 How to Run the Demos
+## Why We Win
 
-### 1. The Investor Pitch & Impact Simulator (Recommended)
+Most teams are building apps. We are building **hard tech with a social supply chain.**
 
-This is a polished, interactive web/mobile ready landing page designed to WOW judges.
+Every square meter of Glass2Grid installed puts direct cash into a rural farmer's pocket for their "waste," stopping the crop burning cycle at the source. We aren't just offsetting carbon—we are rewriting the economic incentives of pollution.
 
-- **How to run:** Double-click `web/index.html` to open it in your browser.
-- **What it does:** Calculates Farmer Income generated, CO2 saved, and Power output in real-time based on window surface area.
-
-### 2. The Physics Simulation (Optional)
-
-A detailed optical model for the technical dossier.
-
-- **Prerequisites:** Python 3.x, `numpy`, `matplotlib`.
-- **How to run:**
-  ```bash
-  cd simulation
-  pip install numpy matplotlib
-  python lsc_model.py
-  ```
-- **Note:** If Python is not installed, rely on the Web Simulator for presentation purposes.
+- **Circular Economy:** Farmers get paid. Smog gets stopped. Cities get power.
+- **Aesthetic First:** It looks like premium tinted glass, not a science experiment.
+- **Bankable:** We've modeled the ROI to make sense for developers even before subsidies.
 
 ---
 
-## 🏆 Hult Prize Strategy
+**Principal Maintainer:** Sourish Senapati  
+_Built for the 2026 Hult Prize._
 
-- **Focus:** Social Supply Chain. Emphasize the **wealth transfer to rural farmers**.
-- **differentiation:** Unlike standard solar, we are _aesthetic_ and _transparent_. Unlike standard glass, we pay for ourselves.
-
----
-
-Made with love by Sourish Senapati.
+_(Note: IP-sensitive datasets in this repo are encrypted at rest. Contact the admin if you need the decryption keys.)_
