@@ -103,11 +103,11 @@ const LCAAModel = ({ currency = 'USD', exchangeRate = 1 }) => {
     };
 
     return (
-        <div className="py-24 relative overflow-hidden bg-black/40">
+        <div className="py-16 md:py-24 relative overflow-hidden bg-black/40">
             <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-green-500/5 rounded-full blur-[120px] pointer-events-none" />
 
-            <div className="max-w-7xl mx-auto px-6">
-                <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
+            <div className="max-w-7xl mx-auto px-4 md:px-6">
+                <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 md:gap-12">
                     
                     {/* Left Panel: Inputs & Theory */}
                     <div>
@@ -169,7 +169,7 @@ const LCAAModel = ({ currency = 'USD', exchangeRate = 1 }) => {
                     {/* Middle: Visualization */}
                     <div className="lg:col-span-2 space-y-6">
                         {/* Simulation Screen */}
-                        <div className="bg-black/80 rounded-2xl border border-white/10 h-[400px] relative overflow-hidden flex flex-col p-6">
+                        <div className="bg-black/80 rounded-2xl border border-white/10 h-[300px] md:h-[400px] relative overflow-hidden flex flex-col p-4 md:p-6">
                             
                             {!optimizationData.length ? (
                                 <div className="h-full flex flex-col items-center justify-center text-gray-500 opacity-50">

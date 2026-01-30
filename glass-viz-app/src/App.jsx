@@ -14,6 +14,7 @@ function App() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [currency, setCurrency] = useState('USD');
   const [exchangeRate, setExchangeRate] = useState(91.94); // Fallback
+  const [thickness, setThickness] = useState(8); // Shared state for thickness
 
   useEffect(() => {
     fetch('https://api.exchangerate-api.com/v4/latest/USD')
@@ -31,7 +32,7 @@ function App() {
   return (
     <div className="min-h-screen relative">
       <ParticleBackground />
-      <nav className="fixed top-0 left-0 right-0 z-50 px-6 py-4 glass-panel m-4 flex justify-between items-center max-w-7xl mx-auto backdrop-blur-md bg-black/20">
+      <nav className="fixed top-0 left-0 right-0 z-50 px-4 md:px-6 py-4 glass-panel m-2 md:m-4 flex justify-between items-center max-w-7xl mx-auto backdrop-blur-md bg-black/20">
         <div className="text-2xl font-bold tracking-tighter">
           <span className="text-white">LUMI</span>
           <span className="text-[#00ffcc]">CORE</span>
@@ -63,13 +64,22 @@ function App() {
         </section>
 
         <section id="simulator" className="scroll-mt-24">
-          <EngineeringSimulator currency={currency} exchangeRate={safeRate} />
+          <EngineeringSimulator 
+            currency={currency} 
+            exchangeRate={safeRate} 
+            thickness={thickness}
+            setThickness={setThickness}
+          />
         </section>
 
         <section id="lcaa" className="scroll-mt-24">
-          <LCAAModel currency={currency} exchangeRate={safeRate} />
+          <LCAAModel 
+            currency={currency} 
+            exchangeRate={safeRate} 
+            thickness={thickness}
+          />
         </section>
-
+        
         <section id="impact" className="scroll-mt-24">
           <ImpactCalculator currency={currency} setCurrency={setCurrency} exchangeRate={safeRate} />
         </section>

@@ -39,7 +39,7 @@ const ContactModal = ({ isOpen, onClose }) => {
             exit={{ opacity: 0, scale: 0.95, y: 20 }}
             className="fixed inset-0 flex items-center justify-center z-[70] p-4 pointer-events-none"
           >
-            <div className="bg-[#0a0a0f] border border-[#00ffcc]/30 w-full max-w-lg rounded-2xl p-6 md:p-8 shadow-2xl relative pointer-events-auto">
+            <div className="bg-[#0a0a0f] border border-[#00ffcc]/30 w-full max-w-lg rounded-2xl p-6 md:p-8 shadow-2xl relative pointer-events-auto overflow-y-auto max-h-[90vh]">
               <button 
                 onClick={onClose}
                 className="absolute top-4 right-4 text-gray-400 hover:text-white transition-colors"

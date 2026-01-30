@@ -136,11 +136,21 @@ const MaterialSpec = () => {
 
             {/* Interactive Exploded View Diagram - REALISTIC STACKING */}
             <div 
-                className={`relative h-[600px] flex flex-col justify-center items-center perspective-1000 group py-12 select-none ${isDragging ? 'cursor-grabbing' : 'cursor-grab'}`}
+                className={`relative h-[450px] md:h-[600px] flex flex-col justify-center items-center perspective-1000 group py-12 select-none ${isDragging ? 'cursor-grabbing' : 'cursor-grab'}`}
                 onMouseDown={handleMouseDown}
                 onMouseMove={handleMouseMove}
                 onMouseUp={handleMouseUp}
                 onMouseLeave={handleMouseUp}
+                onTouchStart={(e) => {
+                   const touch = e.touches[0];
+                   handleMouseDown({ clientX: touch.clientX, clientY: touch.clientY });
+                }}
+                onTouchMove={(e) => {
+                   const touch = e.touches[0];
+                   handleMouseMove({ clientX: touch.clientX, clientY: touch.clientY });
+                }}
+                onTouchEnd={handleMouseUp}
+                style={{ touchAction: 'none' }}
             >
                 {/* Central Axis Line (Only in Exploded Mode) */}
                 <AnimatePresence>

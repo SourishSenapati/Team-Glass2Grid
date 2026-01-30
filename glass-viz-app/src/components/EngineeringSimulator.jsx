@@ -3,12 +3,11 @@ import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContai
 import { Settings, Activity, Gauge, Thermometer, Zap, Layers } from 'lucide-react';
 
 
-const EngineeringSimulator = ({ currency = 'USD', exchangeRate = 1 }) => {
+const EngineeringSimulator = ({ currency = 'USD', exchangeRate = 1, thickness, setThickness }) => {
   const [activeTab, setActiveTab] = useState('physics'); // physics, spectral, thermal
   
   // Hyperparameters
   const [params, setParams] = useState({
-    thickness: 8, // mm
     concentration: 450, // ppm
     area: 10 // m2
   });
@@ -23,6 +22,7 @@ const EngineeringSimulator = ({ currency = 'USD', exchangeRate = 1 }) => {
   });
 
   const [curveData, setCurveData] = useState([]);
+  const [spectralData, setSpectralData] = useState([]);
 
   // Physics Constants
   const ABS_COEFF = 0.005; // Absorption per ppm per mm
@@ -40,7 +40,8 @@ const EngineeringSimulator = ({ currency = 'USD', exchangeRate = 1 }) => {
   useEffect(() => {
     runSimulation();
     generateOptimizationCurve();
-  }, [params, currency, exchangeRate]);
+    generateSpectralData();
+  }, [params, thickness, currency, exchangeRate]);
 
   const runSimulation = () => {
     // === ADVANCED LSC PHYSICS ENGINE (SOLAR-V2.5 KERNEL) === 
@@ -52,7 +53,7 @@ const EngineeringSimulator = ({ currency = 'USD', exchangeRate = 1 }) => {
     const LENGTH = 2.0;
     const WIDTH = 1.2;
     const perimeter = 2 * (LENGTH + WIDTH);
-    const thicknessM = params.thickness / 1000;
+    const thicknessM = thickness / 1000;
     const apertureArea = LENGTH * WIDTH;
     const edgeArea = perimeter * thicknessM; 
     const GEOMETRIC_GAIN = apertureArea / edgeArea;
@@ -99,7 +100,7 @@ const EngineeringSimulator = ({ currency = 'USD', exchangeRate = 1 }) => {
     // 6. Spectral Absorption (Input Coupling)
     // A = 1 - 10^(-epsilon * C * d)
     const MOLAR_EXTINCTION = 0.005; 
-    const absorptionEff = 1 - Math.exp(-MOLAR_EXTINCTION * params.concentration * (params.thickness/10));
+    const absorptionEff = 1 - Math.exp(-MOLAR_EXTINCTION * params.concentration * (thickness/10));
 
     // === TOTAL SYSTEM EFFICIENCY ===
     // eta_sys = eta_abs * eta_QY * eta_stokes * eta_trap * eta_transport * (1 - Fresnel)
@@ -181,13 +182,46 @@ const EngineeringSimulator = ({ currency = 'USD', exchangeRate = 1 }) => {
         const eff_QY = QY_0 / (1 + K_SV * c);
         const reabs = 1 - Math.exp(-EXTINCTION_COEFF * c * meanPath * STOKES_OVERLAP_FACTOR);
         const trans = (1 - 0.05*(c/1000)) * (1 - reabs * (1 - eff_QY));
-        const abs = 1 - Math.exp(-0.005 * c * (params.thickness/10));
+        const abs = 1 - Math.exp(-0.005 * c * (thickness/10));
         
         const eff = abs * eff_QY * trans * TRAPPING_EFF;
         
         data.push({ ppm: c, efficiency: (eff * 100).toFixed(2) });
     }
     setCurveData(data);
+  };
+  
+  const generateSpectralData = () => {
+    // Dynamically generate spectral data based on concentration (Red shift & Quenching)
+    const data = [];
+    const peakAbs = 350;
+    // Red shift effect: Higher concentration shifts emission slightly red
+    const shift = (params.concentration / 1000) * 10; 
+    const peakEm = 460 + shift;
+    
+    // Intensity effect: Higher concentration = higher absorption, but self-quenching lowers emission relative to peak potential
+    const absIntensity = Math.min(1.0, 0.2 + (params.concentration / 600)); 
+    
+    // Calculate QY Factor for emission height
+    const K_SV = 0.0005;
+    const qyFactor = 1 / (1 + K_SV * params.concentration);
+    const emIntensity = absIntensity * 0.9 * qyFactor;
+
+    for (let nm = 300; nm <= 600; nm += 10) {
+        // Gaussian approximations for curves
+        // Absorption: Centered ~350nm, Width ~40nm
+        const abs = absIntensity * Math.exp(-Math.pow(nm - peakAbs, 2) / (2 * Math.pow(30, 2)));
+        
+        // Emission: Centered ~460nm + shift, Width ~35nm
+        const em = emIntensity * Math.exp(-Math.pow(nm - peakEm, 2) / (2 * Math.pow(35, 2)));
+        
+        data.push({
+            nm, 
+            abs: abs < 0.01 ? 0 : abs.toFixed(3),
+            em: em < 0.01 ? 0 : em.toFixed(3)
+        });
+    }
+    setSpectralData(data);
   };
 
   const TARGET_SALES_PRICE_PER_M2 = 450; 
@@ -207,7 +241,7 @@ const EngineeringSimulator = ({ currency = 'USD', exchangeRate = 1 }) => {
         </p>
       </div>
 
-      <div className="glass-panel p-8 grid grid-cols-1 lg:grid-cols-3 gap-12 min-h-[600px]">
+      <div className="glass-panel p-4 md:p-8 grid grid-cols-1 lg:grid-cols-3 gap-8 md:gap-12 min-h-[500px]">
         {/* Control Panel */}
         <div className="space-y-8 h-full flex flex-col">
             <div className="flex items-center gap-2 mb-4 border-b border-white/10 pb-4">
@@ -220,13 +254,13 @@ const EngineeringSimulator = ({ currency = 'USD', exchangeRate = 1 }) => {
                     <label className="text-sm text-gray-400 mb-2 block font-semibold uppercase tracking-wider">Waveguide Thickness</label>
                     <div className="flex justify-between items-center mb-3">
                         <span className="text-xs text-gray-500">4mm (Slim)</span>
-                        <span className="text-[#00ffcc] font-mono font-bold text-xl border border-[#00ffcc]/30 px-3 py-1 rounded bg-[#00ffcc]/10">{params.thickness}mm</span>
+                        <span className="text-[#00ffcc] font-mono font-bold text-xl border border-[#00ffcc]/30 px-3 py-1 rounded bg-[#00ffcc]/10">{thickness}mm</span>
                         <span className="text-xs text-gray-500">12mm (Safety)</span>
                     </div>
                     <input 
                         type="range" min="4" max="12" step="1" 
-                        value={params.thickness}
-                        onChange={(e) => setParams({...params, thickness: parseInt(e.target.value)})}
+                        value={thickness}
+                        onChange={(e) => setThickness(parseInt(e.target.value))}
                         className="w-full accent-[#00ffcc] h-2 bg-gray-700 rounded-lg appearance-none cursor-pointer"
                     />
                 </div>
@@ -284,22 +318,22 @@ const EngineeringSimulator = ({ currency = 'USD', exchangeRate = 1 }) => {
             </div>
 
             {/* Tab Navigation */}
-            <div className="flex gap-4 border-b border-white/10 pb-1">
+            <div className="flex gap-4 border-b border-white/10 pb-1 overflow-x-auto no-scrollbar">
                 <button 
                     onClick={() => setActiveTab('physics')}
-                    className={`pb-3 px-2 text-sm font-bold uppercase tracking-wider transition-colors flex items-center gap-2 ${activeTab === 'physics' ? 'text-[#00ffcc] border-b-2 border-[#00ffcc]' : 'text-gray-500 hover:text-white'}`}
+                    className={`pb-3 px-2 text-sm font-bold uppercase tracking-wider transition-colors flex items-center gap-2 whitespace-nowrap ${activeTab === 'physics' ? 'text-[#00ffcc] border-b-2 border-[#00ffcc]' : 'text-gray-500 hover:text-white'}`}
                 >
                     <Zap size={16} /> Wavelength Optimization
                 </button>
                 <button 
                     onClick={() => setActiveTab('spectral')}
-                    className={`pb-3 px-2 text-sm font-bold uppercase tracking-wider transition-colors flex items-center gap-2 ${activeTab === 'spectral' ? 'text-[#00ffcc] border-b-2 border-[#00ffcc]' : 'text-gray-500 hover:text-white'}`}
+                    className={`pb-3 px-2 text-sm font-bold uppercase tracking-wider transition-colors flex items-center gap-2 whitespace-nowrap ${activeTab === 'spectral' ? 'text-[#00ffcc] border-b-2 border-[#00ffcc]' : 'text-gray-500 hover:text-white'}`}
                 >
                     <Layers size={16} /> Spectral Response
                 </button>
                 <button 
                     onClick={() => setActiveTab('thermal')}
-                    className={`pb-3 px-2 text-sm font-bold uppercase tracking-wider transition-colors flex items-center gap-2 ${activeTab === 'thermal' ? 'text-[#00ffcc] border-b-2 border-[#00ffcc]' : 'text-gray-500 hover:text-white'}`}
+                    className={`pb-3 px-2 text-sm font-bold uppercase tracking-wider transition-colors flex items-center gap-2 whitespace-nowrap ${activeTab === 'thermal' ? 'text-[#00ffcc] border-b-2 border-[#00ffcc]' : 'text-gray-500 hover:text-white'}`}
                 >
                     <Thermometer size={16} /> Thermal Load
                 </button>
@@ -381,7 +415,7 @@ const EngineeringSimulator = ({ currency = 'USD', exchangeRate = 1 }) => {
                 {/* Spectral Response - LAB VERIFIED DATA */}
                 {activeTab === 'spectral' && (
                     <div className="h-full w-full p-4 md:p-6 relative flex flex-col">
-                        <div className="absolute top-4 right-4 z-10">
+                        <div className="relative md:absolute md:top-4 md:right-4 z-10 mb-4 md:mb-0">
                             <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded bg-white/5 border border-white/10 backdrop-blur-md">
                                 <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>
                                 <span className="text-[10px] font-mono text-gray-300 uppercase tracking-widest">
@@ -390,7 +424,7 @@ const EngineeringSimulator = ({ currency = 'USD', exchangeRate = 1 }) => {
                             </div>
                         </div>
 
-                        <div className="mb-6">
+                        <div className="mb-6 relative z-0">
                             <h3 className="text-[#00ffcc] font-bold text-lg mb-1">Stokes Shift & Quantum Yield Analysis</h3>
                             <p className="text-gray-400 text-xs max-w-xl leading-relaxed">
                                 Verifiable spectral data from N-doped Rice Husk CQDs.
@@ -402,22 +436,7 @@ const EngineeringSimulator = ({ currency = 'USD', exchangeRate = 1 }) => {
 
                         <div className="h-[400px] w-full">
                             <ResponsiveContainer width="100%" height="100%">
-                                <AreaChart data={[
-                                    { nm: 300, abs: 0.2, em: 0 },
-                                    { nm: 320, abs: 0.6, em: 0 },
-                                    { nm: 340, abs: 0.95, em: 0 }, // Abs Peak
-                                    { nm: 350, abs: 1.0, em: 0.02 }, 
-                                    { nm: 360, abs: 0.85, em: 0.05 },
-                                    { nm: 380, abs: 0.4, em: 0.1 },
-                                    { nm: 400, abs: 0.1, em: 0.2 },
-                                    { nm: 420, abs: 0.02, em: 0.45 },
-                                    { nm: 440, abs: 0.01, em: 0.8 },
-                                    { nm: 460, abs: 0, em: 1.0 }, // Em Peak
-                                    { nm: 480, abs: 0, em: 0.75 },
-                                    { nm: 500, abs: 0, em: 0.4 },
-                                    { nm: 550, abs: 0, em: 0.1 },
-                                    { nm: 600, abs: 0, em: 0 }
-                                ]} margin={{ top: 10, right: 10, left: 0, bottom: 0 }}>
+                                <AreaChart data={spectralData} margin={{ top: 10, right: 10, left: 0, bottom: 0 }}>
                                     <defs>
                                         <linearGradient id="gradAbs" x1="0" y1="0" x2="0" y2="1">
                                             <stop offset="5%" stopColor="#3b82f6" stopOpacity={0.3}/>

@@ -93,14 +93,14 @@ const ImpactCalculator = ({ currency, setCurrency, exchangeRate }) => {
 
   return (
     <div className="py-16">
-      <div className="text-center mb-12">
+      <div className="text-center mb-8 md:mb-12">
         <h2 className="text-3xl md:text-5xl font-bold mb-4">
           Project <span className="text-[#00ffcc]">Feasibility Model</span>
         </h2>
         <p className="text-gray-400">Input site-specific parameters to generate operational forecasts.</p>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 glass-panel p-8">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 glass-panel p-4 md:p-8">
         
         {/* Controls */}
         <div className="space-y-8 relative z-20">
@@ -130,7 +130,7 @@ const ImpactCalculator = ({ currency, setCurrency, exchangeRate }) => {
                     <button
                         key={type}
                         onClick={() => setInputs(prev => ({...prev, buildingType: type, glassArea: type === 'skyscraper' ? 15000 : type === 'airport' ? 30000 : 5000}))}
-                        className={`py-2 px-1 text-xs font-bold uppercase tracking-wider rounded border transition-all ${inputs.buildingType === type ? 'bg-[#00ffcc] text-black border-[#00ffcc]' : 'bg-black/40 text-gray-400 border-white/10 hover:border-white/30'}`}
+                        className={`py-3 px-2 text-xs font-bold uppercase tracking-wider rounded border transition-all ${inputs.buildingType === type ? 'bg-[#00ffcc] text-black border-[#00ffcc]' : 'bg-black/40 text-gray-400 border-white/10 hover:border-white/30'}`}
                     >
                         {type}
                     </button>

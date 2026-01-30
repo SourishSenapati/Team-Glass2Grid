@@ -18,7 +18,7 @@ const HeroSection = ({ onContactClick }) => {
           Building Integrated Photovoltaics (BIPV) Systems
         </div>
         
-        <h1 className="text-5xl md:text-7xl font-extrabold mb-6 leading-tight">
+        <h1 className="text-4xl md:text-7xl font-extrabold mb-6 leading-tight">
           Advanced Luminescent <br />
           <span className="text-gradient">Solar Concentrator Glazing</span>
         </h1>
@@ -57,7 +57,7 @@ const HeroSection = ({ onContactClick }) => {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 0.5, duration: 1 }}
-        className="absolute bottom-10 w-full max-w-5xl px-4 grid grid-cols-1 md:grid-cols-3 gap-6"
+        className="relative mt-16 md:absolute md:bottom-10 w-full max-w-5xl px-4 grid grid-cols-1 md:grid-cols-3 gap-6"
       >
         <StatCard icon={Leaf} title="Feedstock Optimization" value="100% Upcycled Biomass" color="text-green-400" />
         <StatCard icon={Sun} title="Optical Transmittance" value="~80% VLT" color="text-yellow-400" />

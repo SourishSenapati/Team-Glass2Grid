@@ -159,14 +159,14 @@ const TechExplainer = () => {
                         />
                         <motion.div 
                             layoutId={`detail-${activeDetail.label}`}
-                            className="bg-[#0a0a0f] border border-[#00ffcc]/30 rounded-2xl p-8 max-w-2xl w-full relative z-10 shadow-[0_0_50px_rgba(0,255,204,0.1)]"
+                            className="bg-[#0a0a0f] border border-[#00ffcc]/30 rounded-2xl p-6 md:p-8 max-w-2xl w-full relative z-10 shadow-[0_0_50px_rgba(0,255,204,0.1)] overflow-y-auto max-h-[90vh]"
                             initial={{ scale: 0.9, opacity: 0 }}
                             animate={{ scale: 1, opacity: 1 }}
                             exit={{ scale: 0.9, opacity: 0 }}
                         >
                             <button 
                                 onClick={() => setActiveDetail(null)}
-                                className="absolute top-4 right-4 text-gray-400 hover:text-white transition-colors"
+                                className="absolute top-4 right-4 text-gray-400 hover:text-white transition-colors z-20 bg-[#0a0a0f]/50 p-1 rounded-full backdrop-blur-sm"
                             >
                                 <X size={24} />
                             </button>
@@ -175,10 +175,10 @@ const TechExplainer = () => {
                                 Technical Deep Dive
                             </div>
                             
-                            <h3 className="text-3xl font-bold text-white mb-2">{activeDetail.title}</h3>
+                            <h3 className="text-2xl md:text-3xl font-bold text-white mb-2">{activeDetail.title}</h3>
                             <h4 className="text-gray-400 font-mono text-sm mb-6 uppercase border-b border-white/10 pb-4">{activeDetail.label}</h4>
                             
-                            <p className="text-gray-300 leading-relaxed text-lg">
+                            <p className="text-gray-300 leading-relaxed text-base md:text-lg">
                                 {activeDetail.desc}
                             </p>
                         </motion.div>
