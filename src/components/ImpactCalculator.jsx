@@ -130,9 +130,9 @@ const ImpactCalculator = ({ currency, setCurrency, exchangeRate }) => {
                     <button
                         key={type}
                         onClick={() => setInputs(prev => ({...prev, buildingType: type, glassArea: type === 'skyscraper' ? 15000 : type === 'airport' ? 30000 : 5000}))}
-                        className={`py-3 px-1 text-[10px] md:text-sm font-bold uppercase tracking-tight md:tracking-wider rounded-lg border transition-all text-center ${inputs.buildingType === type ? 'bg-[#00ffcc] text-black border-[#00ffcc] shadow-lg shadow-[#00ffcc]/30' : 'bg-white/5 text-white/95 border-white/30 hover:border-[#00ffcc]/70 hover:text-white hover:bg-white/10'}`}
+                        className={`py-3 px-2 text-[11px] md:text-sm font-bold uppercase tracking-tight md:tracking-wider rounded-lg border transition-all text-center leading-tight whitespace-normal break-words ${inputs.buildingType === type ? 'bg-[#00ffcc] text-black border-[#00ffcc] shadow-lg shadow-[#00ffcc]/30' : 'bg-white/5 text-white/95 border-white/30 hover:border-[#00ffcc]/70 hover:text-white hover:bg-white/10'}`}
                     >
-                        {type}
+                        {type.charAt(0).toUpperCase() + type.slice(1)}
                     </button>
                 ))}
              </div>
