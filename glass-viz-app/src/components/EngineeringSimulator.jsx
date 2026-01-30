@@ -318,22 +318,22 @@ const EngineeringSimulator = ({ currency = 'USD', exchangeRate = 1, thickness, s
             </div>
 
             {/* Tab Navigation */}
-            <div className="flex gap-4 border-b border-white/10 pb-1 overflow-x-auto no-scrollbar">
+            <div className="flex gap-4 border-b border-white/10 pb-1 overflow-x-auto no-scrollbar scroll-smooth">
                 <button 
                     onClick={() => setActiveTab('physics')}
-                    className={`pb-3 px-2 text-sm font-bold uppercase tracking-wider transition-colors flex items-center gap-2 whitespace-nowrap ${activeTab === 'physics' ? 'text-[#00ffcc] border-b-2 border-[#00ffcc]' : 'text-gray-500 hover:text-white'}`}
+                    className={`pb-3 px-4 text-sm font-bold uppercase tracking-wider transition-colors flex items-center gap-2 whitespace-nowrap min-w-max ${activeTab === 'physics' ? 'text-[#00ffcc] border-b-2 border-[#00ffcc]' : 'text-gray-500 hover:text-white'}`}
                 >
                     <Zap size={16} /> Wavelength Optimization
                 </button>
                 <button 
                     onClick={() => setActiveTab('spectral')}
-                    className={`pb-3 px-2 text-sm font-bold uppercase tracking-wider transition-colors flex items-center gap-2 whitespace-nowrap ${activeTab === 'spectral' ? 'text-[#00ffcc] border-b-2 border-[#00ffcc]' : 'text-gray-500 hover:text-white'}`}
+                    className={`pb-3 px-4 text-sm font-bold uppercase tracking-wider transition-colors flex items-center gap-2 whitespace-nowrap min-w-max ${activeTab === 'spectral' ? 'text-[#00ffcc] border-b-2 border-[#00ffcc]' : 'text-gray-500 hover:text-white'}`}
                 >
                     <Layers size={16} /> Spectral Response
                 </button>
                 <button 
                     onClick={() => setActiveTab('thermal')}
-                    className={`pb-3 px-2 text-sm font-bold uppercase tracking-wider transition-colors flex items-center gap-2 whitespace-nowrap ${activeTab === 'thermal' ? 'text-[#00ffcc] border-b-2 border-[#00ffcc]' : 'text-gray-500 hover:text-white'}`}
+                    className={`pb-3 px-4 text-sm font-bold uppercase tracking-wider transition-colors flex items-center gap-2 whitespace-nowrap min-w-max ${activeTab === 'thermal' ? 'text-[#00ffcc] border-b-2 border-[#00ffcc]' : 'text-gray-500 hover:text-white'}`}
                 >
                     <Thermometer size={16} /> Thermal Load
                 </button>
@@ -345,7 +345,7 @@ const EngineeringSimulator = ({ currency = 'USD', exchangeRate = 1, thickness, s
                 {activeTab === 'physics' && (
                     <div className="flex-1 flex flex-col md:flex-row">
                         {/* Chart Section */}
-                        <div className="flex-1 p-4 relative min-h-[300px]">
+                        <div className="flex-1 p-4 relative h-[400px] md:h-auto md:min-h-[300px]">
                             <h4 className="absolute top-4 left-4 text-xs font-bold text-gray-500 uppercase tracking-widest z-10 flex items-center gap-2">
                                 <Activity size={12} className="text-[#00ffcc]" /> 
                                 Pareto Efficiency Frontier

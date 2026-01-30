@@ -204,7 +204,7 @@ const TechExplainer = () => {
                     </p>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 pl-4">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 relative">
                     {/* Timeline Line (Desktop only) */}
                     <div className="hidden md:block absolute left-1/2 top-40 bottom-20 w-px bg-gradient-to-b from-[#00ffcc]/0 via-[#00ffcc]/30 to-[#00ffcc]/0 -translate-x-1/2" />
 
@@ -215,7 +215,7 @@ const TechExplainer = () => {
                             whileInView={{ opacity: 1, x: 0 }}
                             viewport={{ once: true, margin: "-100px" }}
                             transition={{ duration: 0.6, delay: index * 0.1 }}
-                            className={`relative ${index % 2 === 0 ? "md:text-right md:pr-8 md:mr-auto" : "md:text-left md:pl-8 md:ml-auto"} md:w-[48%] mb-12 last:mb-0`} 
+                            className={`relative ${index % 2 === 0 ? "md:text-right md:pr-12" : "md:text-left md:pl-12"} mb-12 last:mb-0`} 
                         >
                             {/* Center Dot */}
                             <div className="hidden md:flex absolute top-6 -right-[24px] w-4 h-4 rounded-full border-[3px] border-[#0a0a0f] bg-[#00ffcc] z-20 shadow-[0_0_15px_#00ffcc]
