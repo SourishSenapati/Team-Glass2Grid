@@ -45,10 +45,10 @@ We propose splitting the product line into two modular form factors to maximize 
 
 ### 4. Implementation Roadmap
 
-1.  **Phase 1:** Lab synthesis of Carbon Dots from Rice Husk (Completed).
-2.  **Phase 2:** Dispersion into PMMA/PDMS flexible sheets (Prototype).
-3.  **Phase 3:** Development of the "Power Clip" - a universal edge connector for the film.
-4.  **Phase 4:** Pilot retrofit on a university campus building.
+1. **Phase 1:** Lab synthesis of Carbon Dots from Rice Husk (Completed).
+2. **Phase 2:** Dispersion into PMMA/PDMS flexible sheets (Prototype).
+3. **Phase 3:** Development of the "Power Clip" - a universal edge connector for the film.
+4. **Phase 4:** Pilot retrofit on a university campus building.
 
 ### 5. Intellectual Property Strategy (Defensibility)
 
