@@ -1,9 +1,12 @@
 import React, { useState } from 'react';
 import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, ReferenceLine } from 'recharts';
+import PreOrderModal from './PreOrderModal';
 
 const ComparisonChart = ({ currency = 'USD', exchangeRate = 1 }) => {
     const [years] = useState(25);
     const [scenario, setScenario] = useState('base'); // conservative, base, aggressive
+    const [isPreOrderOpen, setIsPreOrderOpen] = useState(false);
+    const [selectedTier, setSelectedTier] = useState(null);
 
     // Financial Parameters based on Sensitivity Analysis
     const getParams = () => {
@@ -173,12 +176,12 @@ const ComparisonChart = ({ currency = 'USD', exchangeRate = 1 }) => {
                 <div className="flex flex-col gap-4 p-4 md:p-6 rounded-xl bg-white/5 border border-white/10">
                     <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
                         <h3 className="text-base md:text-lg font-bold text-white">Financial Model</h3>
-                        <div className="flex bg-black/60 rounded-lg p-1.5 gap-1.5 border border-white/10 w-full sm:w-auto">
+                        <div className="flex flex-wrap bg-black/60 rounded-lg p-1.5 gap-1.5 border border-white/10 w-full sm:w-auto">
                             {['conservative', 'base', 'aggressive'].map(s => (
                                 <button 
                                     key={s}
                                     onClick={() => setScenario(s)} 
-                                    className={`px-3 md:px-4 py-2 md:py-2.5 text-xs md:text-sm font-bold uppercase tracking-wider rounded-md transition-all flex-1 sm:flex-initial whitespace-nowrap ${
+                                    className={`px-2 md:px-4 py-2 md:py-2.5 text-[10px] md:text-sm font-bold uppercase tracking-wider rounded-md transition-all flex-1 sm:flex-initial whitespace-nowrap ${
                                         scenario === s 
                                         ? (s === 'conservative' ? 'bg-red-500 text-white shadow-lg shadow-red-500/30' : s === 'aggressive' ? 'bg-green-500 text-white shadow-lg shadow-green-500/30' : 'bg-[#00ffcc] text-black shadow-lg shadow-[#00ffcc]/30') 
                                         : 'text-gray-400 hover:text-white hover:bg-white/5'
@@ -298,7 +301,13 @@ const ComparisonChart = ({ currency = 'USD', exchangeRate = 1 }) => {
                                 </div>
                             ))}
                         </div>
-                        <button className={`w-full py-3 rounded-lg font-bold text-sm tracking-wide transition-all ${tier.highlight ? 'bg-[#00ffcc] text-black hover:bg-[#00ccxa]' : 'bg-white/10 text-white hover:bg-white/20'}`}>
+                        <button 
+                            onClick={() => {
+                                setSelectedTier(tier);
+                                setIsPreOrderOpen(true);
+                            }}
+                            className={`w-full py-3 rounded-lg font-bold text-sm tracking-wide transition-all ${tier.highlight ? 'bg-[#00ffcc] text-black hover:bg-[#00b399]' : 'bg-white/10 text-white hover:bg-white/20'}`}
+                        >
                             {tier.highlight ? 'PRE-ORDER NOW' : 'CONTACT SALES'}
                         </button>
                     </div>
@@ -306,6 +315,11 @@ const ComparisonChart = ({ currency = 'USD', exchangeRate = 1 }) => {
              </div>
         )}
 
+        <PreOrderModal 
+            isOpen={isPreOrderOpen} 
+            onClose={() => setIsPreOrderOpen(false)}
+            tier={selectedTier}
+        />
     </div>
   );
 };
