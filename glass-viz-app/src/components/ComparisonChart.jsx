@@ -1,9 +1,12 @@
 import React, { useState } from 'react';
 import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, ReferenceLine } from 'recharts';
+import PreOrderModal from './PreOrderModal';
 
 const ComparisonChart = ({ currency = 'USD', exchangeRate = 1 }) => {
     const [years] = useState(25);
     const [scenario, setScenario] = useState('base'); // conservative, base, aggressive
+    const [isPreOrderOpen, setIsPreOrderOpen] = useState(false);
+    const [selectedTier, setSelectedTier] = useState(null);
 
     // Financial Parameters based on Sensitivity Analysis
     const getParams = () => {
@@ -298,7 +301,13 @@ const ComparisonChart = ({ currency = 'USD', exchangeRate = 1 }) => {
                                 </div>
                             ))}
                         </div>
-                        <button className={`w-full py-3 rounded-lg font-bold text-sm tracking-wide transition-all ${tier.highlight ? 'bg-[#00ffcc] text-black hover:bg-[#00ccxa]' : 'bg-white/10 text-white hover:bg-white/20'}`}>
+                        <button 
+                            onClick={() => {
+                                setSelectedTier(tier);
+                                setIsPreOrderOpen(true);
+                            }}
+                            className={`w-full py-3 rounded-lg font-bold text-sm tracking-wide transition-all ${tier.highlight ? 'bg-[#00ffcc] text-black hover:bg-[#00b399]' : 'bg-white/10 text-white hover:bg-white/20'}`}
+                        >
                             {tier.highlight ? 'PRE-ORDER NOW' : 'CONTACT SALES'}
                         </button>
                     </div>
@@ -307,6 +316,12 @@ const ComparisonChart = ({ currency = 'USD', exchangeRate = 1 }) => {
         )}
 
     </div>
+
+    <PreOrderModal 
+        isOpen={isPreOrderOpen}
+        onClose={() => setIsPreOrderOpen(false)}
+        tier={selectedTier}
+    />
   );
 };
 
