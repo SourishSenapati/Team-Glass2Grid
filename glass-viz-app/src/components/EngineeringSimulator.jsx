@@ -323,19 +323,19 @@ const EngineeringSimulator = ({ currency = 'USD', exchangeRate = 1, thickness, s
                     onClick={() => setActiveTab('physics')}
                     className={`pb-3 px-4 text-sm font-bold uppercase tracking-wider transition-colors flex items-center gap-2 whitespace-nowrap min-w-max ${activeTab === 'physics' ? 'text-[#00ffcc] border-b-2 border-[#00ffcc]' : 'text-gray-500 hover:text-white'}`}
                 >
-                    <Zap size={16} /> Wavelength Optimization
+                    <Zap size={16} /> <span className="hidden md:inline">Wavelength Optimization</span>
                 </button>
                 <button 
                     onClick={() => setActiveTab('spectral')}
                     className={`pb-3 px-4 text-sm font-bold uppercase tracking-wider transition-colors flex items-center gap-2 whitespace-nowrap min-w-max ${activeTab === 'spectral' ? 'text-[#00ffcc] border-b-2 border-[#00ffcc]' : 'text-gray-500 hover:text-white'}`}
                 >
-                    <Layers size={16} /> Spectral Response
+                    <Layers size={16} /> <span className="hidden md:inline">Spectral Response</span>
                 </button>
                 <button 
                     onClick={() => setActiveTab('thermal')}
                     className={`pb-3 px-4 text-sm font-bold uppercase tracking-wider transition-colors flex items-center gap-2 whitespace-nowrap min-w-max ${activeTab === 'thermal' ? 'text-[#00ffcc] border-b-2 border-[#00ffcc]' : 'text-gray-500 hover:text-white'}`}
                 >
-                    <Thermometer size={16} /> Thermal Load
+                    <Thermometer size={16} /> <span className="hidden md:inline">Thermal Load</span>
                 </button>
             </div>
 
