@@ -111,12 +111,12 @@ const ComparisonChart = ({ currency = 'USD', exchangeRate = 1 }) => {
 
     const pricingTiers = [
         {
-            title: "G2G-Flex DIY",
-            tag: "B2C STARTER",
-            price: currency === 'USD' ? "$149" : `₹${Math.round(149 * exchangeRate).toLocaleString()}`,
-            unit: "/ kit",
-            desc: "Perfect for balconies and apartment windows. 30-min install.",
-            features: ["20 sq.ft DIY Retrofit Film", "100W Equivalent Output", "Snap-on Power Clip (USB-C)", "Mobile App Access"],
+            title: "Lumicore IoT",
+            tag: "SMART SENSORS",
+            price: currency === 'USD' ? "$89" : `₹${Math.round(89 * exchangeRate).toLocaleString()}`,
+            unit: "/ module",
+            desc: "Self-sustaining power for smart city sensors and monitoring.",
+            features: ["Compact 20W Output", "Powers Environmental Sensors", "Zero-Wiring Installation", "Real-time Data Link"],
             highlight: false
         },
         {
