@@ -43,7 +43,7 @@ const SpectralAnalysis = () => {
       </div>
 
       <div className="h-[350px] w-full font-mono text-xs">
-        <ResponsiveContainer width="100%" height="100%">
+        <ResponsiveContainer width="100%" height="100%" minHeight={200}>
           <AreaChart data={data} margin={{ top: 10, right: 30, left: 0, bottom: 20 }}>
             <defs>
               <linearGradient id="colorAbs" x1="0" y1="0" x2="0" y2="1">

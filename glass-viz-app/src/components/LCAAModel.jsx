@@ -185,7 +185,7 @@ const LCAAModel = ({ currency = 'USD', exchangeRate = 1 }) => {
                                         </h4>
                                         <span className="font-mono text-xs text-gray-500">EPOCH: {progress}/50</span>
                                     </div>
-                                    <ResponsiveContainer width="100%" height="85%">
+                                    <ResponsiveContainer width="100%" height="85%" minHeight={200}>
                                         <AreaChart data={optimizationData}>
                                             <defs>
                                                 <linearGradient id="colorCarbon" x1="0" y1="0" x2="0" y2="1">

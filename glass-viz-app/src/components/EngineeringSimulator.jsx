@@ -71,7 +71,7 @@ const EngineeringSimulator = ({ currency = 'USD', exchangeRate = 1, thickness, s
     // 3. Quantum Yield with Concentration Quenching (Stern-Volmer Model)
     // At high concentrations, QDs quench each other due to dipole-dipole interactions.
     // QY = QY_0 / (1 + K_sv * C)
-    const QY_0 = 0.95; // 95% intrinsic yield
+    const QY_0 = 0.55; // 55% current realistic target (85% theoretical limit)
     const K_SV = 0.0005; // Stern-Volmer constant
     const effective_QY = QY_0 / (1 + K_SV * params.concentration);
 
@@ -350,7 +350,7 @@ const EngineeringSimulator = ({ currency = 'USD', exchangeRate = 1, thickness, s
                                 <Activity size={12} className="text-[#00ffcc]" /> 
                                 Pareto Efficiency Frontier
                             </h4>
-                            <ResponsiveContainer width="100%" height="100%">
+                            <ResponsiveContainer width="100%" height="100%" minHeight={250}>
                                 <LineChart data={curveData} margin={{ top: 40, right: 30, left: 10, bottom: 10 }}>
                                     <defs>
                                         <linearGradient id="lineGradient" x1="0" y1="0" x2="1" y2="0">
@@ -435,7 +435,7 @@ const EngineeringSimulator = ({ currency = 'USD', exchangeRate = 1, thickness, s
                         </div>
 
                         <div className="h-[400px] w-full">
-                            <ResponsiveContainer width="100%" height="100%">
+                            <ResponsiveContainer width="100%" height="100%" minHeight={250}>
                                 <AreaChart data={spectralData} margin={{ top: 10, right: 10, left: 0, bottom: 0 }}>
                                     <defs>
                                         <linearGradient id="gradAbs" x1="0" y1="0" x2="0" y2="1">
