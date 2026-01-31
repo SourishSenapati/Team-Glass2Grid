@@ -15,16 +15,16 @@ const HeroSection = ({ onContactClick }) => {
         className="z-10 max-w-5xl"
       >
         <div className="inline-block mb-4 px-4 py-1 rounded-full border border-[var(--color-primary)] text-[var(--color-primary)] text-sm font-semibold tracking-wider uppercase bg-opacity-20 bg-[#00ffcc22]">
-          Building Integrated Photovoltaics (BIPV) Systems
+          From Crop Residue to Smart Cities
         </div>
         
         <h1 className="text-4xl md:text-7xl font-extrabold mb-6 leading-tight">
-          Advanced Luminescent <br />
-          <span className="text-gradient">Solar Concentrator Glazing</span>
+          Agricultural-Waste Derived <br />
+          <span className="text-gradient">Hybrid Tinted Power Glass</span>
         </h1>
         
         <p className="text-xl md:text-2xl text-[var(--text-muted)] mb-10 max-w-3xl mx-auto h-relaxed">
-          <span className="text-white font-semibold">Lumicore</span> engineers high-performance optical interfaces that convert agricultural biomass into scalable, energy-generating architectural glass, minimizing embodied carbon while maximizing operational efficiency.
+          <span className="text-white font-semibold">Lumicore</span> transforms rice husk and bagasse into intelligent, energy-generating infrastructure. Our <span className="text-white">Hybrid Material Strategy</span> powers self-sustaining smart sensors while reducing urban carbon emissions.
         </p>
 
         <div className="flex flex-col md:flex-row gap-4 justify-center items-center">

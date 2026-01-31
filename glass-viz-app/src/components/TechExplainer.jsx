@@ -36,32 +36,33 @@ const TechExplainer = () => {
             borderColor: "border-green-400/30",
             bgGradient: "from-green-400/10 to-transparent"
         },
+
         {
             icon: Zap,
             step: "02",
-            title: "Nanomaterial Synthesis",
-            subtitle: "Hydrothermal Carbonization & Surface Passivation",
-            desc: "Using a proprietary 'bottom-up' hydrothermal synthesis method, we convert the cellulosic biomass into highly efficient Carbon Quantum Dots (CQDs).",
+            title: "Hybrid Material Synthesis",
+            subtitle: "Upcycling Waste with Engineered Precision",
+            desc: "We combine agricultural waste-derived carbon with engineered additives to create a robust hybrid material that overcomes the limitations of pure biomass-derived dots.",
             techDetails: [
                 {
-                    label: "Hydrothermal Synthesis",
-                    title: "Green Chemistry",
-                    desc: "A bottom-up approach mimicking natural geothermal processes. We dissolve biogenic silica in an alkaline solution under high pressure (200 bar) and temperature (180°C). This nucleates Carbon Quantum Dots (CQDs) directly from the biomass solution without harsh organic solvents."
+                    label: "Hybrid Design Philosophy",
+                    title: "The Best of Both Worlds",
+                    desc: "Pure waste-derived materials often suffer from low brightness. We use agricultural waste as the sustainable carbon backbone while integrating safe performance enhancers to ensure commercial-grade efficiency and stability."
                 },
                 {
-                    label: "Tunable Bandgap",
-                    title: "Quantum Confinement",
-                    desc: "The quantum confinement effect allows us to precisely engineer the bandgap of the CQDs by controlling their physical size during synthesis. By adjusting reaction time and temperature, we tune the absorption edge to perfectly overlap with the UV/Blue spectrum (300-450nm) while maintaining transparency in the visible range."
+                    label: "Performance Enhancers",
+                    title: "Dopants & Stabilizers",
+                    desc: "We introduce Nitrogen dopants to drastically improve light emission efficiency and Red-Emissive Stabilizers to reduce re-absorption losses, ensuring the material performs reliably in real-world conditions."
                 },
                 {
-                    label: "High Quantum Yield (>70%)",
-                    title: "Exciton Efficiency",
-                    desc: "Quantum Yield (QY) measures photon conversion efficiency. Our surface passivation techniques, using heteroatom doping (Nitrogen/Sulfur), reduce surface defect states that typically trap excitons, resulting in >70% of absorbed UV photons being re-emitted as useful light."
+                    label: "Durability Engineering",
+                    title: "UV-Protective Shield",
+                    desc: "To prevent degradation from harsh sunlight, we incorporate UV-protective nanoparticles into the hybrid matrix, extending the operational lifetime of the glass to match industry standards (20+ years)."
                 },
                 {
                     label: "Non-Toxic Chemistry",
                     title: "Bio-Compatible Materials",
-                    desc: "Unlike traditional Cadmium or Lead-based Quantum Dots (CdSe/PbS) which pose severe environmental hazards, our Carbon-based dots are bio-compatible and non-toxic. This eliminates the need for expensive hazardous waste disposal and ensures safety for residential deployment."
+                    desc: "Our hybrid carbon-based materials remain free from toxic heavy metals like Cadmium or Lead, ensuring safety for residential deployment and simplifying end-of-life recycling."
                 }
             ],
             color: "text-yellow-400",
@@ -131,6 +132,33 @@ const TechExplainer = () => {
             color: "text-purple-400",
             borderColor: "border-purple-400/30",
             bgGradient: "from-purple-400/10 to-transparent"
+        },
+        {
+            icon: BatteryCharging,
+            step: "05",
+            title: "Smart Building Integration",
+            subtitle: "Self-Powered IoT Ecosystem",
+            desc: "The energy harvested by our windows directly powers critical building intelligence systems, creating a decentralized, self-sustaining sensor network.",
+            techDetails: [
+                {
+                    label: "Air Quality Monitoring",
+                    title: "Healthier Interiors",
+                    desc: "Continuous power for CO2, PM2.5, and VOC sensors allows buildings to autonomously regulate ventilation, ensuring optimal indoor air quality for occupants without manual intervention."
+                },
+                {
+                    label: "Occupancy & Automation",
+                    title: "Responsive Spaces",
+                    desc: "Self-powered occupancy sensors enable granular lighting and HVAC control, turning off systems in empty rooms to further reduce building energy consumption."
+                },
+                {
+                    label: "Zero-Maintenance Infrastructure",
+                    title: "No Wires, No Batteries",
+                    desc: "By generating power locally at the window edge, we eliminate the need for expensive copper wiring runs or the labor-intensive replacement of thousands of sensor batteries."
+                }
+            ],
+            color: "text-blue-400",
+            borderColor: "border-blue-400/30",
+            bgGradient: "from-blue-400/10 to-transparent"
         }
     ];
 

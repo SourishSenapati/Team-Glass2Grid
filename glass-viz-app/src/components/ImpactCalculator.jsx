@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { Calculator, DollarSign, CloudLightning, Users } from 'lucide-react';
+import { Calculator, DollarSign, CloudLightning, Users, Recycle } from 'lucide-react';
 
 const ImpactCalculator = ({ currency, setCurrency, exchangeRate }) => {
   const [inputs, setInputs] = useState({
@@ -14,6 +14,7 @@ const ImpactCalculator = ({ currency, setCurrency, exchangeRate }) => {
     energyGenerated: 0,
     costSavings: 0,
     carbonOffset: 0,
+    wasteUpcycled: 0,
     farmerRevenue: 0,
     capex: 0,
     payback: 0
@@ -75,6 +76,7 @@ const ImpactCalculator = ({ currency, setCurrency, exchangeRate }) => {
       energyGenerated: Math.round(yearlyEnergy).toLocaleString(),
       costSavings: formatCurrency(totalAnnualSavingsUSD),
       carbonOffset: co2.toFixed(1),
+      wasteUpcycled: ((inputs.glassArea * HUSK_PER_M2) / 1000).toFixed(1),
       farmerRevenue: formatCurrency(farmerRevUSD),
       capex: currency === 'USD' 
           ? `$${(totalCapexUSD / 1000000).toFixed(1)}M` 
@@ -219,11 +221,11 @@ const ImpactCalculator = ({ currency, setCurrency, exchangeRate }) => {
                 color="text-green-400"
             />
             <ResultCard 
-                icon={Calculator} 
-                label="Project CAPEX" 
-                value={results.capex}
-                subtext={`@ $${CAPEX_PER_M2}/m² Installed`}
-                color="text-red-400"
+                icon={Recycle} 
+                label="Biomass Upcycled" 
+                value={`${results.wasteUpcycled} t`}
+                subtext="Prevented from Burning"
+                color="text-orange-400"
             />
              <ResultCard 
                 icon={Users} 
