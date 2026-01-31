@@ -1,6 +1,4 @@
-# PROJECT DOSSIER
-
-# Agricultural-Waste–Derived Hybrid Tinted Power Glass for Smart Buildings
+# PROJECT DOSSIER: Agricultural-Waste–Derived Hybrid Tinted Power Glass
 
 ---
 
@@ -140,13 +138,13 @@ This ensures:
 
 ## 7. Working Principle of the Glass
 
-1.  Sunlight enters the tinted glass
-2.  Agricultural-waste–derived hybrid material absorbs UV/blue light
-3.  Material emits red light
-4.  Light is trapped and guided inside the glass
-5.  Light reaches the window edges
-6.  Small solar strips convert it into electricity
-7.  Electricity powers smart sensors
+1. Sunlight enters the tinted glass
+2. Agricultural-waste–derived hybrid material absorbs UV/blue light
+3. Material emits red light
+4. Light is trapped and guided inside the glass
+5. Light reaches the window edges
+6. Small solar strips convert it into electricity
+7. Electricity powers smart sensors
 
 ---
 
@@ -183,7 +181,7 @@ These sensors enable:
 
 ### Phase 1 – Waste-Based Proof of Concept
 
-**Goal: Demonstrate agricultural waste → functional material**
+#### Goal: Demonstrate agricultural waste → functional material
 
 - Prepare waste-derived carbon material (safe lab methods)
 - Measure optical absorption & emission
@@ -191,7 +189,7 @@ These sensors enable:
 
 ### Phase 2 – Hybrid Enhancement
 
-**Goal: Improve efficiency**
+#### Goal: Improve efficiency
 
 - Introduce dopants & stabilizers
 - Compare pure waste vs hybrid material
@@ -199,7 +197,7 @@ These sensors enable:
 
 ### Phase 3 – Smart Glass Prototype
 
-**Goal: Demonstrate application**
+#### Goal: Demonstrate application
 
 - Embed hybrid waste-derived material into transparent panel
 - Attach edge solar strips
