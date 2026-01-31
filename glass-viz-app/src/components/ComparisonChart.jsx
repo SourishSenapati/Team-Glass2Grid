@@ -149,7 +149,7 @@ const ComparisonChart = ({ currency = 'USD', exchangeRate = 1 }) => {
                     Commercial <span className="text-[#00ffcc]">Viability</span>
                 </h2>
                 <p className="text-gray-400 text-sm">
-                    From ROI analysis to direct consumer pricing.
+                    From ROI analysis to smart sensor viability.
                 </p>
             </div>
             
@@ -164,7 +164,7 @@ const ComparisonChart = ({ currency = 'USD', exchangeRate = 1 }) => {
                     onClick={() => setActiveView('pricing')}
                     className={`px-4 py-2 rounded-lg text-sm font-bold transition-all ${activeView === 'pricing' ? 'bg-[#00ffcc] text-black shadow-lg shadow-[#00ffcc]/20' : 'text-gray-400 hover:text-white'}`}
                 >
-                    B2C Pricing
+                    Sensor Pricing
                 </button>
             </div>
         </div>
@@ -175,9 +175,9 @@ const ComparisonChart = ({ currency = 'USD', exchangeRate = 1 }) => {
             <div className="lg:col-span-1 space-y-6">
                 {/* Mobile-First Controls */}
                 <div className="flex flex-col gap-4 p-4 rounded-xl bg-white/5 border border-white/10">
-                    <div className="flex justify-between items-center">
-                        <h3 className="text-lg font-bold text-gray-200">Financial Model</h3>
-                        <div className="flex bg-black/40 rounded-lg p-1 gap-1">
+                    <div className="flex flex-col gap-3">
+                        <h3 className="text-lg font-bold text-gray-200">Financial Model Scenario</h3>
+                        <div className="grid grid-cols-3 bg-black/40 rounded-lg p-1 gap-1">
                             {['conservative', 'base', 'aggressive'].map(s => (
                                 <button 
                                     key={s}
