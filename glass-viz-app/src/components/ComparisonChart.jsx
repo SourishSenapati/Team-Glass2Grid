@@ -140,6 +140,7 @@ const ComparisonChart = ({ currency = 'USD', exchangeRate = 1 }) => {
     ];
 
   return (
+    <>
     <div className="py-12 md:py-16">
         {/* Header & Tabs */}
         <div className="flex flex-col md:flex-row justify-between items-center mb-10 gap-6">
@@ -238,7 +239,7 @@ const ComparisonChart = ({ currency = 'USD', exchangeRate = 1 }) => {
                     <div className="flex items-center gap-1.5"><div className="w-2 h-2 rounded-full bg-red-500" /> Standard</div>
                     <div className="flex items-center gap-1.5"><div className="w-2 h-2 rounded-full bg-[#00ffcc]" /> Glass2Grid</div>
                  </div>
-                <ResponsiveContainer width="100%" height="100%">
+                <ResponsiveContainer width="100%" height="100%" minHeight={250}>
                     <AreaChart
                         data={data}
                         margin={{ top: 10, right: 10, left: -20, bottom: 0 }}
@@ -322,6 +323,7 @@ const ComparisonChart = ({ currency = 'USD', exchangeRate = 1 }) => {
         onClose={() => setIsPreOrderOpen(false)}
         tier={selectedTier}
     />
+    </>
   );
 };
 
