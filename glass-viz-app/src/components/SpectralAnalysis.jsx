@@ -1,41 +1,75 @@
-import React, { PureComponent } from 'react';
+import React, { useState, useMemo } from 'react';
 import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, ReferenceArea, ReferenceLine } from 'recharts';
-
-const data = [
-  { nm: 300, absorption: 0.1, emission: 0, solar: 0.2 },
-  { nm: 320, absorption: 0.3, emission: 0, solar: 0.3 },
-  { nm: 340, absorption: 0.6, emission: 0, solar: 0.4 },
-  { nm: 360, absorption: 0.85, emission: 0, solar: 0.5 },
-  { nm: 380, absorption: 0.95, emission: 0, solar: 0.6 },
-  { nm: 400, absorption: 0.9, emission: 0, solar: 0.8 }, // UV Peak
-  { nm: 420, absorption: 0.6, emission: 0, solar: 0.9 },
-  { nm: 440, absorption: 0.2, emission: 0.05, solar: 1.0 },
-  { nm: 460, absorption: 0.05, emission: 0.1, solar: 1.0 },
-  { nm: 480, absorption: 0.0, emission: 0.1, solar: 1.0 }, // Visible Transparency Window Starts
-  { nm: 500, absorption: 0.0, emission: 0.05, solar: 1.0 }, // Pure Transparency
-  { nm: 520, absorption: 0.0, emission: 0.0, solar: 1.0 },
-  { nm: 540, absorption: 0.0, emission: 0.0, solar: 1.0 },
-  { nm: 560, absorption: 0.0, emission: 0.0, solar: 1.0 },
-  { nm: 580, absorption: 0.0, emission: 0.1, solar: 1.0 },
-  { nm: 600, absorption: 0.05, emission: 0.3, solar: 0.95 },
-  { nm: 620, absorption: 0.1, emission: 0.6, solar: 0.9 },
-  { nm: 640, absorption: 0.1, emission: 0.9, solar: 0.85 }, // Emission Peak (Red/IR)
-  { nm: 660, absorption: 0.05, emission: 0.7, solar: 0.8 },
-  { nm: 680, absorption: 0.0, emission: 0.4, solar: 0.75 },
-  { nm: 700, absorption: 0.0, emission: 0.1, solar: 0.7 },
-  { nm: 720, absorption: 0.0, emission: 0.0, solar: 0.65 },
-  { nm: 740, absorption: 0.0, emission: 0.0, solar: 0.6 },
-];
+import { spectralData } from '../data/spectralData';
 
 const SpectralAnalysis = () => {
+  const [material, setMaterial] = useState('riceHusk');
+
+  const chartData = useMemo(() => {
+    const raw = spectralData[material];
+    const dataPoints = [];
+    
+    // Generate data range 300nm to 800nm step 10
+    const getVal = (arr, nm) => {
+        const point = arr.find(p => Math.abs(p.nm - nm) < 10);
+        return point ? point.val : 0;
+    };
+    
+    // Simple Gaussian-ish Solar approx
+    const getSolar = (nm) => {
+        if (nm < 400) return 0.2 + (nm-300)/100 * 0.6;
+        if (nm < 500) return 0.8 + (nm-400)/100 * 0.2;
+        if (nm < 700) return 1.0 - (nm-500)/200 * 0.3;
+        return 0.7;
+    };
+
+    for (let nm = 300; nm <= 800; nm += 20) {
+        // Interpolate or find nearest
+        // Finding exact or implementing simple linear interp would be better but nearest neighbor is fine for viz
+        let abs = 0;
+        let em = 0;
+        
+        // Find nearest neighbor in raw data
+        const absPoint = raw.absorption.reduce((prev, curr) => Math.abs(curr.nm - nm) < Math.abs(prev.nm - nm) ? curr : prev);
+        if (Math.abs(absPoint.nm - nm) <= 20) abs = absPoint.val;
+
+        const emPoint = raw.emission.reduce((prev, curr) => Math.abs(curr.nm - nm) < Math.abs(prev.nm - nm) ? curr : prev);
+        if (Math.abs(emPoint.nm - nm) <= 20) em = emPoint.val;
+
+        dataPoints.push({
+            nm,
+            absorption: abs,
+            emission: em,
+            solar: getSolar(nm)
+        });
+    }
+    return dataPoints;
+  }, [material]);
+
   return (
     <div className="glass-panel p-8 rounded-2xl">
       <div className="mb-6">
-        <div className="flex items-center justify-between">
-            <h3 className="text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-red-400">
-            Stokes Shift & Quantum Yield Analysis
-            </h3>
-            <span className="px-3 py-1 rounded-full bg-white/10 text-xs font-mono">LAB DATA: BATCH-CQD-2026</span>
+        <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+            <div>
+                <h3 className="text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-red-400">
+                Stokes Shift & Quantum Yield Analysis
+                </h3>
+                <div className="flex gap-2 mt-2">
+                    <button 
+                        onClick={() => setMaterial('riceHusk')}
+                        className={`text-[10px] font-mono px-2 py-1 rounded border ${material === 'riceHusk' ? 'bg-blue-500/20 border-blue-500 text-blue-400' : 'border-white/10 text-gray-500'}`}
+                    >
+                        RICE-HUSK-CQD
+                    </button>
+                    <button 
+                        onClick={() => setMaterial('bagasse')}
+                        className={`text-[10px] font-mono px-2 py-1 rounded border ${material === 'bagasse' ? 'bg-green-500/20 border-green-500 text-green-400' : 'border-white/10 text-gray-500'}`}
+                    >
+                        BAGASSE-CQD
+                    </button>
+                </div>
+            </div>
+            <span className="px-3 py-1 rounded-full bg-white/10 text-xs font-mono">LAB DATA: {material === 'riceHusk' ? 'RH-2026-X' : 'BG-2026-Y'}</span>
         </div>
         <p className="text-sm text-gray-400 mt-2 max-w-2xl">
             This graph proves the "Invisibility" of our technology. We absorb exclusively in the <span className="text-blue-400 font-bold">UV Range (300-420nm)</span> and re-emit in the <span className="text-red-400 font-bold">Near-IR Range (600nm+)</span>, leaving the <span className="text-green-400 font-bold">Visible Spectrum (450-600nm)</span> completely transparent for human vision.
@@ -44,7 +78,7 @@ const SpectralAnalysis = () => {
 
       <div className="h-[350px] w-full font-mono text-xs">
         <ResponsiveContainer width="100%" height="100%" minHeight={200}>
-          <AreaChart data={data} margin={{ top: 10, right: 30, left: 0, bottom: 20 }}>
+          <AreaChart data={chartData} margin={{ top: 10, right: 30, left: 0, bottom: 20 }}>
             <defs>
               <linearGradient id="colorAbs" x1="0" y1="0" x2="0" y2="1">
                 <stop offset="5%" stopColor="#60a5fa" stopOpacity={0.8}/>

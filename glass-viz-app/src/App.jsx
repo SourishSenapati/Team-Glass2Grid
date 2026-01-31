@@ -9,6 +9,7 @@ import ComparisonChart from './components/ComparisonChart';
 import Footer from './components/Footer';
 import ContactModal from './components/ContactModal';
 import ParticleBackground from './components/ParticleBackground';
+import ErrorBoundary from './components/ErrorBoundary';
 
 function App() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -56,7 +57,9 @@ function App() {
         <HeroSection onContactClick={() => setIsModalOpen(true)} />
         
         <section id="technology" className="scroll-mt-24">
-          <TechExplainer />
+          <ErrorBoundary>
+            <TechExplainer />
+          </ErrorBoundary>
         </section>
 
         <section id="materials" className="scroll-mt-24">
@@ -64,28 +67,36 @@ function App() {
         </section>
 
         <section id="simulator" className="scroll-mt-24">
-          <EngineeringSimulator 
-            currency={currency} 
-            exchangeRate={safeRate} 
-            thickness={thickness}
-            setThickness={setThickness}
-          />
+          <ErrorBoundary>
+            <EngineeringSimulator 
+                currency={currency} 
+                exchangeRate={safeRate} 
+                thickness={thickness}
+                setThickness={setThickness}
+            />
+          </ErrorBoundary>
         </section>
 
         <section id="lcaa" className="scroll-mt-24">
-          <LCAAModel 
-            currency={currency} 
-            exchangeRate={safeRate} 
-            thickness={thickness}
-          />
+          <ErrorBoundary>
+            <LCAAModel 
+                currency={currency} 
+                exchangeRate={safeRate} 
+                thickness={thickness}
+            />
+          </ErrorBoundary>
         </section>
         
         <section id="impact" className="scroll-mt-24">
-          <ImpactCalculator currency={currency} setCurrency={setCurrency} exchangeRate={safeRate} />
+          <ErrorBoundary>
+            <ImpactCalculator currency={currency} setCurrency={setCurrency} exchangeRate={safeRate} />
+          </ErrorBoundary>
         </section>
 
         <section id="financials" className="scroll-mt-24">
-          <ComparisonChart currency={currency} exchangeRate={safeRate} />
+          <ErrorBoundary>
+             <ComparisonChart currency={currency} exchangeRate={safeRate} />
+          </ErrorBoundary>
         </section>
       </main>
 

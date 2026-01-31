@@ -25,7 +25,8 @@ const PreOrderModal = ({ isOpen, onClose, tier }) => {
         projectSize: '',
         budget: '',
         timeline: '',
-        requirements: ''
+        requirements: '',
+        website: '' // HoneyPot
     });
 
     const benefits = [
@@ -57,6 +58,20 @@ const PreOrderModal = ({ isOpen, onClose, tier }) => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
+        
+        // Anti-Spam Check
+        if (formData.website) {
+           console.warn("Bot detected.");
+           return;
+        }
+
+        // Phone Validation (International E.164-ish)
+        const phoneRegex = /^\+?[0-9\s\-\(\)]{10,20}$/;
+        if (!phoneRegex.test(formData.phone)) {
+            alert("Please enter a valid phone number (e.g., +1 555-000-0000)");
+            return;
+        }
+
         console.log('Form submitted:', formData);
         // Here you would integrate with your backend/CRM
         alert('Thank you! Our team will contact you within 24 hours.');
@@ -427,6 +442,18 @@ const PreOrderModal = ({ isOpen, onClose, tier }) => {
                                         </div>
                                     </>
                                 )}
+
+
+                                {/* Anti-Spam Honeypot */}
+                                <input 
+                                    type="text" 
+                                    name="website" 
+                                    value={formData.website}
+                                    onChange={(e) => setFormData({...formData, website: e.target.value})}
+                                    style={{ opacity: 0, position: 'absolute', height: 0, width: 0, zIndex: -1 }} 
+                                    tabIndex={-1} 
+                                    autoComplete="off"
+                                />
 
                                 <div className="flex flex-col sm:flex-row gap-4 pt-6 border-t border-white/10">
                                     <button 

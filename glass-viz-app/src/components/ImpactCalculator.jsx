@@ -29,6 +29,23 @@ const ImpactCalculator = ({ currency, setCurrency, exchangeRate }) => {
   const CAPEX_PER_M2 = 450; // $450/m2 installed (premium)
 
   useEffect(() => {
+    // Regional Localization
+    if (currency === 'INR') {
+        setInputs(prev => ({
+            ...prev,
+            sunlightHours: 5.5, // India Avg
+            electricityRate: 0.13 // ~₹12/kWh normalized
+        }));
+    } else {
+        setInputs(prev => ({
+            ...prev,
+            sunlightHours: 4.0, // US Avg
+            electricityRate: 0.18 // US Avg
+        }));
+    }
+  }, [currency]);
+
+  useEffect(() => {
     calculateImpact();
   }, [inputs, currency, exchangeRate]);
 
